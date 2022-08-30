@@ -6,7 +6,7 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 	return (
 		<div>
 			<Head>
-				<title>Ebal MAMASHUU</title>
+				<title>App</title>
 				<link rel="icon" href="/favicon.ico" />
 				
 			</Head>

@@ -1,14 +1,35 @@
 // svg ипортится так с помощю @svgr/webpack
+import { useEffect, useState } from 'react';
 import Arrow from './imgs/arrow.svg';
+import { Rating } from './Rating';
 
 export const Index = () => {
+
+    const [counter, setCounter] = useState(0);
+
+
+    useEffect(() => {
+        console.log('msg from useEffect -', counter);
+
+        return () => console.log('unmount ', counter);
+        
+        
+    }, [counter]);
+
     return <>
-        <button className="btn">btn</button>
+        <h1>{counter}</h1>
+        <button 
+            className="btn"
+            onClick={() => setCounter(counter + 1)}
+        >btn</button>
         <button className="btn_primary">btn_primary</button>
         <button className="btn_ghost">
             btn_ghost &nbsp;<Arrow />
         </button>
-        <p className='p_small'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+        <Rating />
+
+        <p className='p_small'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s.</p>
 
         <div className='tag_small ghost'>hh.ru</div>
         <div className='tag_medium red'>hh.ru</div>
