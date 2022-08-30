@@ -4,17 +4,26 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "debug": "cross-env NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "cross-env": "^7.0.3",
     "next": "12.2.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "sass": "^1.54.5"
   },
   "devDependencies": {
-    "eslint": "8.23.0",
-    "eslint-config-next": "12.2.5"
+    "@svgr/webpack": "^6.3.1",
+    "@types/node": "^18.7.13",
+    "@types/react": "^18.0.17",
+    "@typescript-eslint/eslint-plugin": "^5.35.1",
+    "@typescript-eslint/parser": "^5.35.1",
+    "eslint": "^8.23.0",
+    "eslint-config-next": "12.2.5",
+    "typescript": "^4.8.2"
   }
 }

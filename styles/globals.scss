@@ -1,0 +1,136 @@
+h1,h2,h3,h4,h5,h6 {margin: 0;}
+* { box-sizing: border-box }
+html,
+body {
+  background-color: #F5F6F8;
+  padding: 0;
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+}
+a { color: inherit; text-decoration: none; }
+// span { display: inline-block;}
+svg {transition: all .2s ease;}
+
+$black: #3B434E;
+$gray-light: #EBEBEB;
+$white: white;
+$primary: #7653FC;
+$primary_hover: #5a35ee;
+$red: #FC836D;
+$green: #1DC37E;
+$green-light: #C8F8E4;
+%base_btn {
+  display: inline-block;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: all .2s ease;
+}
+
+
+// ЗАГАЛОВКИ ====================================================================================
+h1 {
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 35px;
+}
+h2 {
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 30px;
+}
+h3 {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 27px;
+}
+
+
+// BUTTONS ====================================================================================
+button.btn { 
+  @extend %base_btn; 
+  &:hover { background: #cccccc;}
+}
+
+button.btn_primary {
+  @extend %base_btn;
+  color: $white;
+  background-color: $primary;
+  &:hover { background-color: $primary_hover }
+}
+
+button.btn_ghost {
+  @extend %base_btn;
+  color: $black;
+  background: none;
+  border: 1px solid $gray-light;
+  &:hover { 
+    background-color: $primary;
+    color: $white; 
+    svg { 
+      transform: rotate(90deg);
+      fill: $white;
+    }
+  }
+}
+
+
+
+// ПАРАГРАФЫ ====================================================================================
+
+p.p_small {
+  font-size: 14px;
+  line-height: 24px;
+}
+p.p_medium {
+  font-size: 16px;
+  line-height: 24px;
+}
+p.p_big {
+  font-size: 18px;
+  line-height: 29px;
+}
+
+// TAGS ====================================================================================
+%tag {
+  display: inline-block;
+  margin-right: 5px;
+  border-radius: 20px;
+}
+div.tag_small {
+  @extend %tag;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 12px;
+}
+div.tag_medium {
+  @extend %tag;
+  padding: 5px 10px;
+  font-size: 14px;
+  line-height: 14px;
+}
+
+div.ghost { border: 1px solid $gray-light }
+div.red {
+  color: $white;
+  background: #DE0000;
+  font-weight: bold;
+}
+div.grey {
+  color: $white;
+  background: #B3C0D9;
+  font-weight: bold;
+}
+div.green {
+  color: $green;
+  background: $green-light;
+  font-weight: bold;
+}
+div.primary {
+  color: $primary;
+  background: none;
+  border: 1px solid $primary;
+}
