@@ -136,7 +136,10 @@ div.primary {
   border: 1px solid $primary;
 }
 
-
+// Header ====================================================================================
+header {
+  background: $green;
+}
 
 // Rating stars ====================================================================================
 
@@ -146,13 +149,15 @@ svg.filled { fill: $primary }
 
 // Wrapper ====================================================================================
 
-main { height: calc(100vh - 39px - 72px) }
+main { height: calc(100vh - 91px) }
 .container {
   max-width: calc(1200px + 10px);
   padding: 10px;
   margin: 0 auto;
 }
-
+.sidebar {
+  width: 30%;
+}
 
 
 
