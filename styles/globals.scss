@@ -141,12 +141,6 @@ header {
   background: $green;
 }
 
-// Rating stars ====================================================================================
-.main_wrapper {
-  display: flex;
-  margin: 0 10%;
-}
-
 
 // Rating stars ====================================================================================
 
@@ -155,6 +149,10 @@ svg.filled { fill: $primary }
 
 
 // Wrapper ====================================================================================
+.main_wrapper {
+  display: flex;
+  margin: 20px 10%;
+}
 
 main { min-height: calc(100vh - 91px) }
 .container {

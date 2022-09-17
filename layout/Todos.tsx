@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { fetchTodos } from '../Redux/TodoSlice';
 import { RootState, useAppDispatch, useAppSelector } from '../store';
 

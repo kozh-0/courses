@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import counterReducer from './Redux/CounterSlice';
-import todosReducer from './Redux/TodoSlice';
+import todoReducer from './Redux/TodoSlice';
+import menuReducer from './Redux/MenuSlice';
 
 export const store = configureStore({
     reducer: {
         counter: counterReducer,
-        todos: todosReducer
+        todos: todoReducer,
+        menu: menuReducer
     },
 });
 

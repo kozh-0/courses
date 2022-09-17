@@ -28,7 +28,7 @@ const initialState = {
     error: null
 } as TodoSliceInterface;
 
-export const todosSlice = createSlice({
+export const todoSlice = createSlice({
     name: 'todos',
     initialState,
     reducers: {},
@@ -50,4 +50,4 @@ export const todosSlice = createSlice({
 // Action creators are generated for each case reducer function
 // export const { increment, decrement } = counterSlice.actions;
 
-export default todosSlice.reducer;
+export default todoSlice.reducer;

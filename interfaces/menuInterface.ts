@@ -10,3 +10,8 @@ export interface MenuItem {
     };
     pages: PageItem[];
 }
+
+export interface Menu {
+    firstCategory: number;
+    list: MenuItem[];
+}

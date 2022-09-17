@@ -7,7 +7,7 @@ import { ProductModel } from "../../interfaces/productInterface";
 const URL = process.env.NEXT_PUBLIC_DOMAIN;
 const firstCategory = 0;
 
-export default function Course(/* props: any */{ menu, page, products }: CourseProps) {
+export default function Course(/* props: any */{ menu, /* page, */ products }: CourseProps) {
     // console.log(props);
     console.log(menu.flatMap(el =>  el.pages.map(p => '/courses/' + p.alias)));
     
