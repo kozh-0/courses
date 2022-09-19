@@ -14,12 +14,14 @@ svg {transition: all .2s ease;}
 
 $black: #3B434E;
 $gray-light: #EBEBEB;
+$gray-dark: #787D85;
 $white: white;
 $primary: #7653FC;
 $primary_hover: #5a35ee;
 $red: #FC836D;
 $green: #1DC37E;
 $green-light: #C8F8E4;
+
 %base_btn {
   display: inline-block;
   padding: 10px;
@@ -160,8 +162,61 @@ main { min-height: calc(100vh - 91px) }
   padding: 10px;
   margin: 0 auto;
 }
+
 .sidebar {
   width: 30%;
+  margin-right: 2%;
+
+  &_main {
+    margin-top: 20px;
+    &_title {
+      display: flex;
+      align-items: center;
+      span {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 25px;
+        margin-left: 20px;
+      }
+      
+      &:hover {
+        svg {fill: $primary}
+        span {color: $primary}
+      }
+    }
+  }
+
+
+  &_second{
+    margin: 15px 0 0 12px;
+    padding-left: 32px;
+    border-left: 1px solid #DFDFDF;
+
+
+    &_title {
+      margin: 10px 0;
+      cursor: pointer;
+      text-transform: uppercase;
+      color: $gray-dark;
+      font-weight: 300;
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+
+  &_third {
+    display: block;
+    margin: 0 0 10px 20px;
+    cursor: pointer;
+    color: $gray-dark;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+
+    &:hover {
+      color: $primary;
+    }
+  }
 }
 
 

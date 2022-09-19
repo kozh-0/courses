@@ -4,6 +4,7 @@ import { ParsedUrlQuery } from "querystring";
 import { MenuItem } from "../../interfaces/menuInterface";
 import { TopPageModel } from "../../interfaces/pageInterface";
 import { ProductModel } from "../../interfaces/productInterface";
+import { Sidebar } from "../../layout/Menu/Sidebar";
 const URL = process.env.NEXT_PUBLIC_DOMAIN;
 const firstCategory = 0;
 
@@ -12,9 +13,10 @@ export default function Course(/* props: any */{ menu, /* page, */ products }: C
     console.log(menu.flatMap(el =>  el.pages.map(p => '/courses/' + p.alias)));
     
     return (
-        <>
+        <div className="main_wrapper">
+            <Sidebar/>
             {products && products.length}
-        </>
+        </div>
     );
 }
 
@@ -36,8 +38,6 @@ export const getStaticProps: GetStaticProps<CourseProps> = async ({ params }: Ge
     if (!params) {
         return { notFound: true };
     }
-    
-    console.log(params);
 
     const { data: menu } = await axios.post<MenuItem[]>(URL + '/api/top-page/find', {
         firstCategory

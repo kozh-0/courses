@@ -12,7 +12,7 @@ import { Rating } from "../Components/Rating";
 import { Menu, MenuItem } from "../interfaces/menuInterface";
 import { Footer } from "../layout/Footer";
 import { Header } from "../layout/Header";
-import { Sidebar } from "../layout/Sidebar";
+import { Sidebar } from "../layout/Menu/Sidebar";
 import Todos from "../layout/Todos";
 import { addMenu } from "../Redux/MenuSlice";
 

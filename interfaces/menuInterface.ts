@@ -1,3 +1,5 @@
+import { TopLevelCategory } from "./pageInterface";
+
 export interface PageItem {
     alias: string;
     title: string;
@@ -10,8 +12,16 @@ export interface MenuItem {
     };
     pages: PageItem[];
 }
-
+// REDUX
 export interface Menu {
     firstCategory: number;
     list: MenuItem[];
+}
+
+// Верстка
+export interface FirstLevelMenuItem {
+    route: string;
+    name: string;
+    icon: JSX.Element;
+    id: TopLevelCategory
 }
