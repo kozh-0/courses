@@ -1,8 +1,8 @@
-import { FirstLevelMenuItem, Menu, PageItem } from "../../interfaces/menuInterface";
+import { FirstLevelMenuItem, PageItem } from "../../interfaces/menuInterface";
 import { TopLevelCategory } from "../../interfaces/pageInterface";
 
 import { RootState, useAppDispatch, useAppSelector } from "../../store";
-import { addMenu, changeOpenState } from '../../Redux/MenuSlice';
+import { changeOpenState } from '../../Redux/MenuSlice';
 
 import CoursesIcon from './icons/courses.svg';
 import ServicesIcon from './icons/services.svg';
@@ -25,31 +25,22 @@ export const Sidebar = () => {
 	const dispatch = useAppDispatch();
 	const router = useRouter();
 
-	// const openSecondLevel = (secondCategory: string) => {
-	// 	const kek = menu.map(m => {
-	// 		if (m._id.secondCategory === secondCategory) m.isOpened = !m.isOpened;
-	// 		return m;
-	// 	});
-	// 	dispatch(addMenu({ firstCategory: 0, list: kek }));
-	// };
-
 	console.log(menu);
+
 
 	const buildSecondLevel = (menuItem: FirstLevelMenuItem) => (
 		<div className="sidebar_second">
-			{menu.map(m => {
-				return (
-					<div key={m._id.secondCategory}>
-						<div className="sidebar_second_title">
-							{m._id.secondCategory}
-						</div>
-						{/* <div className={m.isOpened ? 'active' : 'disable'}> */}
-						<div className='active'>
-							{buildThirdLevel(m.pages, menuItem.route)}
-						</div>
+			{menu.map((m, idx) => (
+				<div key={m._id.secondCategory}>
+					<div className="sidebar_second_title"
+						onClick={() => dispatch(changeOpenState(idx))}>
+						{m._id.secondCategory}
 					</div>
-				);
-			})}
+					<div className={m.isOpened ? 'active' : 'disable'}>
+						{buildThirdLevel(m.pages, menuItem.route)}
+					</div>
+				</div>
+			))}
 		</div>
 	);
 
