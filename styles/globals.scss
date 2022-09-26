@@ -217,6 +217,10 @@ main { min-height: calc(100vh - 91px) }
       color: $primary;
     }
   }
+
+  .active { display: block }
+  .disable { display: none }
+  .onPath { color: $primary; font-weight: 700; font-size: 16px;}
 }
 
 
