@@ -1,23 +1,14 @@
-import { FirstLevelMenuItem, PageItem } from "../../interfaces/menuInterface";
-import { TopLevelCategory } from "../../interfaces/pageInterface";
-
 import { RootState, useAppDispatch, useAppSelector } from "../../store";
 import { changeOpenState } from '../../Redux/MenuSlice';
 
-import CoursesIcon from './icons/courses.svg';
-import ServicesIcon from './icons/services.svg';
-import BooksIcon from './icons/books.svg';
-import ProductsIcon from './icons/products.svg';
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import { FirstLevelMenuItem, PageItem } from "../../interfaces/menuInterface";
+import { FirstLevelMenu } from "../../helpers/helpers";
 
-const FirstLevelMenu: FirstLevelMenuItem[] = [
-	{ route: 'courses', name: 'Курсы', icon: <CoursesIcon />, id: TopLevelCategory.Courses },
-	{ route: 'services', name: 'Сервисы', icon: <ServicesIcon />, id: TopLevelCategory.Services },
-	{ route: 'books', name: 'Книги', icon: <BooksIcon />, id: TopLevelCategory.Books },
-	{ route: 'products', name: 'Продукты', icon: <ProductsIcon />, id: TopLevelCategory.Products }
-];
+import Logo from '../logo.svg';
+
 
 export const Sidebar = () => {
 	const menu = useAppSelector((state: RootState) => state.menu.inner.list);
@@ -25,8 +16,7 @@ export const Sidebar = () => {
 	const dispatch = useAppDispatch();
 	const router = useRouter();
 
-	console.log(menu);
-
+	// console.log(menu);
 
 	const buildSecondLevel = (menuItem: FirstLevelMenuItem) => (
 		<div className="sidebar_second">
@@ -71,6 +61,7 @@ export const Sidebar = () => {
 
 	return (
 		<section className="sidebar">
+			<Logo/>
 			<h1>
 				<Link href="http://localhost:3000/">Sidebar</Link>
 			</h1>
