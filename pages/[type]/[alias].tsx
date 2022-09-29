@@ -5,18 +5,19 @@ import { FirstLevelMenu } from "../../helpers/helpers";
 import { MenuItem } from "../../interfaces/menuInterface";
 import { TopLevelCategory, TopPageModel } from "../../interfaces/pageInterface";
 import { ProductModel } from "../../interfaces/productInterface";
-import { Layout } from "../../layout/Layout";
+import { withLayout } from "../../layout/Layout";
 const URL = process.env.NEXT_PUBLIC_DOMAIN;
 
-export default function Course({ /*menu,  page, */ products }: CourseProps) {
+function TopPage({ /*menu,  page, */ products }: TopPageProps) {
     // console.log(menu.flatMap(el =>  el.pages.map(p => '/courses/' + p.alias)));
     
     return (
-        <Layout>
+        <>
             {products && products.length}
-        </Layout>
+        </>
     );
 }
+export default withLayout(TopPage);
 
 
 
@@ -39,7 +40,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     };
 };
 // получили пропсы для страниц, которые обработались на сервере
-export const getStaticProps: GetStaticProps<CourseProps> = async ({ params }: GetStaticPropsContext<ParsedUrlQuery>) => {
+export const getStaticProps: GetStaticProps<TopPageProps> = async ({ params }: GetStaticPropsContext<ParsedUrlQuery>) => {
     if (!params) return { notFound: true };
     
     const firstCategoryItem = FirstLevelMenu.find(m => m.route === params.type);
@@ -77,9 +78,9 @@ export const getStaticProps: GetStaticProps<CourseProps> = async ({ params }: Ge
 
 };
 
-interface CourseProps {
-    menu: MenuItem[];
-    firstCategory: TopLevelCategory;
-    page: TopPageModel;
-    products: ProductModel[];
+interface TopPageProps extends Record<string, unknown> {
+	menu: MenuItem[];
+	firstCategory: TopLevelCategory;
+	page: TopPageModel;
+	products: ProductModel[];
 }

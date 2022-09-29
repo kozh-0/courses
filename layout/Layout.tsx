@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { FunctionComponent, ReactNode } from "react";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { Sidebar } from "./Menu/Sidebar";
@@ -19,12 +19,12 @@ export const Layout = ({ children }: LayoutProps) => <>
 </>;
 
 
-// export const withLayout = <T extends Record<string, unknown>>(Component: FunctionComponent<T>) => {
-//     return function withLayoutComponent(props: T) {
-//         return (
-//             <Layout>
-//                 <Component {...props}/>
-//             </Layout>
-//         );
-//     };
-// };
+export const withLayout = <T extends Record<string, unknown>>(Component: FunctionComponent<T>) => {
+    return function withLayoutComponent(props: T) {
+        return (
+            <Layout>
+                <Component {...props}/>
+            </Layout>
+        );
+    };
+};

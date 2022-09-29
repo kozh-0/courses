@@ -9,13 +9,13 @@ import type { RootState } from "../store";
 
 import Arrow from '../Components/imgs/arrow.svg';
 import { Rating } from "../Components/Rating";
-import { Menu, MenuItem } from "../interfaces/menuInterface";
+import { MenuItem } from "../interfaces/menuInterface";
 import Todos from "../layout/Todos";
 import { addMenu } from "../Redux/MenuSlice";
-import { Layout } from "../layout/Layout";
+import { withLayout } from "../layout/Layout";
 
 
-export default function Home(props: Menu/* { menu }: HomeProps */) {
+function Home(props: HomeProps/* { menu }: HomeProps */) {
 	const counter = useAppSelector((state: RootState) => state.counter.value);
 	const dispatch = useAppDispatch();
 
@@ -25,7 +25,7 @@ export default function Home(props: Menu/* { menu }: HomeProps */) {
 	}, [dispatch, props]);
 
 
-	return <Layout>
+	return <>
 		<h1>{counter}</h1>
 		<button
 			className="btn_primary"
@@ -51,8 +51,9 @@ export default function Home(props: Menu/* { menu }: HomeProps */) {
 
 		<Todos />
 
-	</Layout>;
+	</>;
 }
+export default withLayout(Home);
 
 // ЭТО SERVER SIDE RENDERING
 // Фишка получения данных таким образом в том, что приходящий html в network не пустой <div id='root'></div>, а полноценно заполненный html, что дает робам знать что страница хорошая для SEO
@@ -62,56 +63,15 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
 	const { data: list } = await axios.post<MenuItem[]>(process.env.NEXT_PUBLIC_DOMAIN + '/api/top-page/find', { firstCategory });
 
 	return {
-		props: { 
+		props: {
 			list,
 			firstCategory
 		}
 	};
 };
 
-export interface HomeProps {
+export interface HomeProps extends Record<string, unknown> {
 	list: MenuItem[];
 	firstCategory: number
 }
 
-
-
-
-
-// return <>
-// 		<Header />
-
-// 		<div className="main_wrapper">
-// 			<Sidebar/>
-// 			<main>
-// 				<h1>{counter}</h1>
-// 				<button
-// 					className="btn_primary"
-// 					onClick={() => dispatch(increment())}
-// 				>increment</button>
-// 				<button
-// 					className="btn"
-// 					onClick={() => dispatch(decrement())}
-// 				>decrement</button>
-// 				<button className="btn_ghost">
-// 					btn_ghost &nbsp;<Arrow />
-// 				</button>
-
-// 				<Rating />
-
-// 				<p className='p_small'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s.</p>
-
-// 				<div className='tag_small ghost'>hh.ru</div>
-// 				<div className='tag_medium red'>hh.ru</div>
-// 				<div className='tag_small grey'>hh.ru</div>
-// 				<div className='tag_medium green'>hh.ru</div>
-// 				<div className='tag_small primary'>hh.ru</div>
-
-				
-// 				<Todos />
-// 			</main>
-
-// 		</div>
-// 		<Footer />
-
-// 	</>;

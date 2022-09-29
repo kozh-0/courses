@@ -1,15 +1,16 @@
 import axios from "axios";
 import { GetStaticProps } from "next";
 import { MenuItem } from "../interfaces/menuInterface";
-import { Layout } from "../layout/Layout";
+import { withLayout } from "../layout/Layout";
 
 
-export default function Search() {
+function Search() {
 
-	return <Layout>
-        <h1>Seach</h1>
-	</Layout>;
+	return <>
+        <h1>Search</h1>
+	</>;
 }
+export default withLayout(Search);
 
 // ЭТО SERVER SIDE RENDERING
 // Фишка получения данных таким образом в том, что приходящий html в network не пустой <div id='root'></div>, а полноценно заполненный html, что дает робам знать что страница хорошая для SEO
@@ -26,7 +27,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
 	};
 };
 
-export interface HomeProps {
+export interface HomeProps extends Record<string, unknown> {
 	list: MenuItem[];
 	firstCategory: number
 }
