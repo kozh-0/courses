@@ -3,18 +3,14 @@ import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { FirstLevelMenu } from "../../helpers/helpers";
 import { MenuItem } from "../../interfaces/menuInterface";
-import { Sidebar } from "../../layout/Menu/Sidebar";
-
-
-
+import { Layout } from "../../layout/Layout";
 
 
 export default function Type({firstCategory}: HomeProps) {
 
-    return <div className="main_wrapper">
-        <Sidebar />
+    return <Layout>
         <h1>Type: {firstCategory}</h1>
-    </div>;
+    </Layout>;
 }
 
 // ЭТО SERVER SIDE RENDERING

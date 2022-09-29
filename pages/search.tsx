@@ -1,20 +1,14 @@
 import axios from "axios";
 import { GetStaticProps } from "next";
-
 import { MenuItem } from "../interfaces/menuInterface";
-import { Sidebar } from "../layout/Menu/Sidebar";
-
+import { Layout } from "../layout/Layout";
 
 
 export default function Search() {
 
-
-
-
-	return <div className="main_wrapper">
-        <Sidebar/>
+	return <Layout>
         <h1>Seach</h1>
-	</div>;
+	</Layout>;
 }
 
 // ЭТО SERVER SIDE RENDERING

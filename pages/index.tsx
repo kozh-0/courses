@@ -10,11 +10,9 @@ import type { RootState } from "../store";
 import Arrow from '../Components/imgs/arrow.svg';
 import { Rating } from "../Components/Rating";
 import { Menu, MenuItem } from "../interfaces/menuInterface";
-import { Footer } from "../layout/Footer";
-import { Header } from "../layout/Header";
-import { Sidebar } from "../layout/Menu/Sidebar";
 import Todos from "../layout/Todos";
 import { addMenu } from "../Redux/MenuSlice";
+import { Layout } from "../layout/Layout";
 
 
 export default function Home(props: Menu/* { menu }: HomeProps */) {
@@ -27,43 +25,33 @@ export default function Home(props: Menu/* { menu }: HomeProps */) {
 	}, [dispatch, props]);
 
 
-	return <>
-		<Header />
+	return <Layout>
+		<h1>{counter}</h1>
+		<button
+			className="btn_primary"
+			onClick={() => dispatch(increment())}
+		>increment</button>
+		<button
+			className="btn"
+			onClick={() => dispatch(decrement())}
+		>decrement</button>
+		<button className="btn_ghost">
+			btn_ghost &nbsp;<Arrow />
+		</button>
 
-		<div className="main_wrapper">
-			<Sidebar/>
-			<main>
-				<h1>{counter}</h1>
-				<button
-					className="btn_primary"
-					onClick={() => dispatch(increment())}
-				>increment</button>
-				<button
-					className="btn"
-					onClick={() => dispatch(decrement())}
-				>decrement</button>
-				<button className="btn_ghost">
-					btn_ghost &nbsp;<Arrow />
-				</button>
+		<Rating />
 
-				<Rating />
+		<p className='p_small'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s.</p>
 
-				<p className='p_small'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s.</p>
+		<div className='tag_small ghost'>hh.ru</div>
+		<div className='tag_medium red'>hh.ru</div>
+		<div className='tag_small grey'>hh.ru</div>
+		<div className='tag_medium green'>hh.ru</div>
+		<div className='tag_small primary'>hh.ru</div>
 
-				<div className='tag_small ghost'>hh.ru</div>
-				<div className='tag_medium red'>hh.ru</div>
-				<div className='tag_small grey'>hh.ru</div>
-				<div className='tag_medium green'>hh.ru</div>
-				<div className='tag_small primary'>hh.ru</div>
+		<Todos />
 
-				
-				<Todos />
-			</main>
-
-		</div>
-		<Footer />
-
-	</>;
+	</Layout>;
 }
 
 // ЭТО SERVER SIDE RENDERING
@@ -85,3 +73,45 @@ export interface HomeProps {
 	list: MenuItem[];
 	firstCategory: number
 }
+
+
+
+
+
+// return <>
+// 		<Header />
+
+// 		<div className="main_wrapper">
+// 			<Sidebar/>
+// 			<main>
+// 				<h1>{counter}</h1>
+// 				<button
+// 					className="btn_primary"
+// 					onClick={() => dispatch(increment())}
+// 				>increment</button>
+// 				<button
+// 					className="btn"
+// 					onClick={() => dispatch(decrement())}
+// 				>decrement</button>
+// 				<button className="btn_ghost">
+// 					btn_ghost &nbsp;<Arrow />
+// 				</button>
+
+// 				<Rating />
+
+// 				<p className='p_small'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s.</p>
+
+// 				<div className='tag_small ghost'>hh.ru</div>
+// 				<div className='tag_medium red'>hh.ru</div>
+// 				<div className='tag_small grey'>hh.ru</div>
+// 				<div className='tag_medium green'>hh.ru</div>
+// 				<div className='tag_small primary'>hh.ru</div>
+
+				
+// 				<Todos />
+// 			</main>
+
+// 		</div>
+// 		<Footer />
+
+// 	</>;

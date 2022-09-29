@@ -5,17 +5,16 @@ import { FirstLevelMenu } from "../../helpers/helpers";
 import { MenuItem } from "../../interfaces/menuInterface";
 import { TopLevelCategory, TopPageModel } from "../../interfaces/pageInterface";
 import { ProductModel } from "../../interfaces/productInterface";
-import { Sidebar } from "../../layout/Menu/Sidebar";
+import { Layout } from "../../layout/Layout";
 const URL = process.env.NEXT_PUBLIC_DOMAIN;
 
-export default function Course({ menu, /* page, */ products }: CourseProps) {
+export default function Course({ /*menu,  page, */ products }: CourseProps) {
     // console.log(menu.flatMap(el =>  el.pages.map(p => '/courses/' + p.alias)));
     
     return (
-        <div className="main_wrapper">
-            <Sidebar/>
+        <Layout>
             {products && products.length}
-        </div>
+        </Layout>
     );
 }
 

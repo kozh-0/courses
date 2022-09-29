@@ -1,16 +1,15 @@
 import { RootState, useAppDispatch, useAppSelector } from "../../store";
 import { changeOpenState } from '../../Redux/MenuSlice';
-
 import Link from "next/link";
 import { useRouter } from "next/router";
-
 import { FirstLevelMenuItem, PageItem } from "../../interfaces/menuInterface";
 import { FirstLevelMenu } from "../../helpers/helpers";
-
 import Logo from '../logo.svg';
+import { DetailedHTMLProps, HTMLAttributes } from "react";
 
+interface SidebarProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> { }
 
-export const Sidebar = () => {
+export const Sidebar = ({ ...props }: SidebarProps) => {
 	const menu = useAppSelector((state: RootState) => state.menu.inner.list);
 	const firstCategory = useAppSelector((state: RootState) => state.menu.inner.firstCategory);
 	const dispatch = useAppDispatch();
@@ -19,7 +18,7 @@ export const Sidebar = () => {
 	// console.log(menu);
 
 	const buildSecondLevel = (menuItem: FirstLevelMenuItem) => (
-		<div className="sidebar_second">
+		<div className="sidebar_second" {...props}>
 			{menu.map((m, idx) => (
 				<div key={m._id.secondCategory}>
 					<div className="sidebar_second_title"
@@ -61,7 +60,7 @@ export const Sidebar = () => {
 
 	return (
 		<section className="sidebar">
-			<Logo/>
+			<Logo />
 			<h1>
 				<Link href="http://localhost:3000/">Sidebar</Link>
 			</h1>
