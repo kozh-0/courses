@@ -6,15 +6,18 @@ import { MenuItem } from "../../interfaces/menuInterface";
 import { TopLevelCategory, TopPageModel } from "../../interfaces/pageInterface";
 import { ProductModel } from "../../interfaces/productInterface";
 import { withLayout } from "../../layout/Layout";
+import { TopPageComponent } from "../../page_components";
 const URL = process.env.NEXT_PUBLIC_DOMAIN;
 
-function TopPage({ /*menu,  page, */ products }: TopPageProps) {
+function TopPage({ firstCategory, page, products }: TopPageProps) {
     // console.log(menu.flatMap(el =>  el.pages.map(p => '/courses/' + p.alias)));
-    
+
     return (
-        <>
-            {products && products.length}
-        </>
+        <TopPageComponent 
+            firstCategory={firstCategory}
+            page={page}
+            products={products}
+        />
     );
 }
 export default withLayout(TopPage);
@@ -33,7 +36,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
     // так как это на сервере обрабатывается, то будет в консоли, но не в браузере
     console.log(paths);
-    
+
     return {
         paths,
         fallback: true
@@ -42,7 +45,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 // получили пропсы для страниц, которые обработались на сервере
 export const getStaticProps: GetStaticProps<TopPageProps> = async ({ params }: GetStaticPropsContext<ParsedUrlQuery>) => {
     if (!params) return { notFound: true };
-    
+
     const firstCategoryItem = FirstLevelMenu.find(m => m.route === params.type);
 
     if (!firstCategoryItem) return { notFound: true };
@@ -54,14 +57,14 @@ export const getStaticProps: GetStaticProps<TopPageProps> = async ({ params }: G
             firstCategory: firstCategoryItem.id
         });
         if (menu.length === 0) return { notFound: true };
-    
+
         const { data: page } = await axios.get<TopPageModel>(URL + '/api/top-page/byAlias/' + params.alias);
-    
+
         const { data: products } = await axios.post<ProductModel[]>(URL + '/api/product/find', {
             category: page.category,
             limit: 10
         });
-    
+
         return {
             props: {
                 menu,
@@ -70,7 +73,7 @@ export const getStaticProps: GetStaticProps<TopPageProps> = async ({ params }: G
                 products
             }
         };
-        
+
     } catch (error) {
         return { notFound: true };
     }
@@ -79,8 +82,8 @@ export const getStaticProps: GetStaticProps<TopPageProps> = async ({ params }: G
 };
 
 interface TopPageProps extends Record<string, unknown> {
-	menu: MenuItem[];
-	firstCategory: TopLevelCategory;
-	page: TopPageModel;
-	products: ProductModel[];
+    menu: MenuItem[];
+    firstCategory: TopLevelCategory;
+    page: TopPageModel;
+    products: ProductModel[];
 }

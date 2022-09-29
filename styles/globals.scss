@@ -156,7 +156,10 @@ svg.filled { fill: $primary }
   margin: 20px 10%;
 }
 
-main { min-height: calc(100vh - 91px) }
+main { 
+  min-height: calc(100vh - 91px);
+  width: 100%; 
+}
 .container {
   max-width: calc(1200px + 10px);
   padding: 10px;
@@ -223,7 +226,72 @@ main { min-height: calc(100vh - 91px) }
   .onPath { color: $primary; font-weight: 700; font-size: 16px;}
 }
 
+// TopPageComponent ====================================================================================
 
+div.TopPageComponent {
+  &_title {
+    div {
+      display: flex;
+      align-items: center;
+      h1 { margin-right: 20px; }
+    }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+
+  &_vacancy {
+    &_title {
+      display: flex;
+      align-items: center;
+      h2 { margin-right: 20px; }
+    }
+
+    &_data {
+      width: 100%;
+      display: flex;
+      text-align: center;
+      &_total {
+        padding: 20px 0;
+        width: 30%;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+        border-radius: 5px;
+        margin-right: 4%;
+        h1 {
+          font-size: 36px;
+          color:#7653FC;
+        }
+      }
+      &_sallary {
+        width: 70%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+        border-radius: 5px;
+        h1 {font-weight: 700;}
+
+        &_jun svg:nth-child(3n){
+          fill: red;
+        }
+        &_mid svg:nth-child(-n+4){
+          fill: red;
+          
+        }
+        &_sin svg:nth-child(n+1){
+          fill: red;
+        }
+      }
+    }
+  }
+}
+
+.splitter {
+  height: 80%;
+  width: 1px;
+  background: $gray-light;
+}
 
 
 
