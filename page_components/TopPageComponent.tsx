@@ -1,3 +1,4 @@
+import Advantages from "../Components/Advantages";
 import Card from "../Components/Card";
 import { TopLevelCategory, TopPageModel } from "../interfaces/pageInterface";
 import { ProductModel } from "../interfaces/productInterface";
@@ -11,7 +12,7 @@ interface TopPageComponentProps {
 
 export const TopPageComponent = ({ page, products, firstCategory }: TopPageComponentProps) => {
     console.log(page);
-    
+
     return (
         <div className="TopPageComponent">
             <div className="TopPageComponent_title">
@@ -27,7 +28,8 @@ export const TopPageComponent = ({ page, products, firstCategory }: TopPageCompo
                 ))}
             </div>
 
-            <Card page={page}/>
+            {firstCategory == TopLevelCategory.Courses && <Card page={page} />}
+            <Advantages advantages={page.advantages} tags={page.tags} seoText={page.seoText} />
         </div>
     );
 };

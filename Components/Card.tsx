@@ -1,6 +1,6 @@
+import { formatRuble } from "../helpers/helpers";
 import { TopPageModel } from "../interfaces/pageInterface";
 import Star from './imgs/small_star.svg';
-
 
 
 export default function Card ({page}: {page: TopPageModel}) {
@@ -23,19 +23,19 @@ export default function Card ({page}: {page: TopPageModel}) {
                     <div className="TopPageComponent_vacancy_data_sallary">
                         <div className="TopPageComponent_vacancy_data_sallary_jun">
                             <p>Начальный</p>
-                            <h1>{page.hh.juniorSalary} ₽</h1>
+                            <h1>{formatRuble(page.hh.juniorSalary)}</h1>
                             <Star/><Star/><Star/>
                         </div >
-                        <div className="splitter"></div>
+                        <div className="splitter"/>
                         <div className="TopPageComponent_vacancy_data_sallary_mid">
                             <p>Средний</p>
-                            <h1>{page.hh.middleSalary} ₽</h1>
+                            <h1>{formatRuble(page.hh.middleSalary)}</h1>
                             <Star/><Star/><Star/>
                         </div>
-                        <div className="splitter"></div>
+                        <div className="splitter"/>
                         <div className="TopPageComponent_vacancy_data_sallary_sin">
                             <p>Профессионал</p>
-                            <h1>{page.hh.seniorSalary} ₽</h1>
+                            <h1>{formatRuble(page.hh.seniorSalary)}</h1>
                             <Star/><Star/><Star/>
                         </div>
                     </div>
