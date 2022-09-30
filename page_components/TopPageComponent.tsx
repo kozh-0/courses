@@ -1,7 +1,11 @@
+import { useEffect } from "react";
 import Advantages from "../Components/Advantages";
 import Card from "../Components/Card";
+import Sort from "../Components/Sort";
 import { TopLevelCategory, TopPageModel } from "../interfaces/pageInterface";
 import { ProductModel } from "../interfaces/productInterface";
+import { addProducts } from "../Redux/ProductSlice";
+import { RootState, useAppDispatch, useAppSelector } from "../store";
 
 
 interface TopPageComponentProps {
@@ -11,7 +15,15 @@ interface TopPageComponentProps {
 }
 
 export const TopPageComponent = ({ page, products, firstCategory }: TopPageComponentProps) => {
-    console.log(page);
+
+    const prod = useAppSelector((state: RootState) => state.products.list);
+    const dispatch = useAppDispatch();
+    
+    useEffect(() => {
+        dispatch(addProducts(products));
+    }, [dispatch, products]);
+    
+    console.log(prod);
 
     return (
         <div className="TopPageComponent">
@@ -20,16 +32,16 @@ export const TopPageComponent = ({ page, products, firstCategory }: TopPageCompo
                     <h1>{page.title}</h1>
                     <div className="tag_medium grey">{products.length}</div>
                 </div>
-                <span>Сортировка</span>
+                <Sort />
             </div>
             <div>
-                {products && products.map(el => (
-                    <div key={el._id}>{el.title}</div>
+                {prod && prod.map(el => (
+                    <div key={el._id}>{el.title}; {el.price} руб | {el.initialRating}</div>
                 ))}
             </div>
 
             {firstCategory == TopLevelCategory.Courses && <Card page={page} />}
-            <Advantages advantages={page.advantages} tags={page.tags} seoText={page.seoText} />
+            {<Advantages advantages={page.advantages} tags={page.tags} seoText={page.seoText} />}
         </div>
     );
 };

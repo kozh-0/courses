@@ -168,7 +168,7 @@ main {
 
 .sidebar {
   width: 25%;
-  margin-right: 2.5%;
+  margin-right: 4%;
 
   &_main {
     margin-top: 20px;
@@ -262,6 +262,7 @@ div.TopPageComponent {
       width: 100%;
       display: flex;
       text-align: center;
+      margin: 15px 0;
       &_total {
         padding: 20px 10px;
         height: 140px;
@@ -328,6 +329,8 @@ div.TopPageComponent {
 
     &_skills {
       display: flex;
+      flex-wrap: wrap;
+      div {margin-bottom: 10px;}
     }
   }
 }
@@ -338,7 +341,11 @@ div.TopPageComponent {
   background: $gray-light;
 }
 
-
+.sort {
+  div { cursor: pointer;}
+  svg {margin-right: 5px;}
+  p { margin-right: 20px;}
+}
 
 // Footer ====================================================================================
 
@@ -368,7 +375,7 @@ footer .footer_inner {
 
 
 
-@media (max-width: 1120px) {
+@media (max-width: 1200px) {
   .TopPageComponent_vacancy_data {
     flex-direction: column;
     &_total { width: 100% !important; margin-bottom: 15px;}

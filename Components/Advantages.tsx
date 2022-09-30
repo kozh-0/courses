@@ -13,13 +13,13 @@ interface AdvantagesInterface {
 }
 
 export default function Advantages({ advantages, tags, seoText }: AdvantagesInterface) {
-
+    // console.log(advantages);
 
     return (
         <div className='TopPageComponent_advantages'>
-            <h2>Преимущества</h2>
+            {advantages[0]?.title ? <h2>Преимущества</h2> : null}
 
-            {advantages.map(el => (
+            {advantages[0]?.title && advantages.map(el => (
                 <div key={el._id} className='TopPageComponent_advantages_item'>
                     <div className='TopPageComponent_advantages_item_icons'>
                         <Check />
@@ -32,9 +32,10 @@ export default function Advantages({ advantages, tags, seoText }: AdvantagesInte
                 </div>
             ))}
 
-            { seoText && <div dangerouslySetInnerHTML={{__html: seoText}} />}
+            {seoText && <div dangerouslySetInnerHTML={{ __html: seoText }} />}
 
-            <h2>Получаемые навыки</h2>
+            {tags.length && <h2>Получаемые навыки</h2>}
+
             <div className='TopPageComponent_advantages_skills'>
                 {tags.map(el => <div key={el} className='tag_small primary'>{el}</div>)}
             </div>
