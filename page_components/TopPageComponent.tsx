@@ -40,6 +40,11 @@ export const TopPageComponent = ({ page, products, firstCategory }: TopPageCompo
                 ))}
             </div>
 
+            <div style={{marginTop: '20px'}}>
+                <input style={{marginBottom: '20px'}} type="text" placeholder="Text"/><br/>
+                <textarea placeholder="Text area"></textarea>
+            </div>
+
             {firstCategory == TopLevelCategory.Courses && <Card page={page} />}
             {<Advantages advantages={page.advantages} tags={page.tags} seoText={page.seoText} />}
         </div>

@@ -6,6 +6,7 @@ import { FirstLevelMenuItem, PageItem } from "../../interfaces/menuInterface";
 import { FirstLevelMenu } from "../../helpers/helpers";
 import Logo from '../logo.svg';
 import { DetailedHTMLProps, HTMLAttributes } from "react";
+import Search from "../../Components/Search";
 
 interface SidebarProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> { }
 
@@ -60,10 +61,13 @@ export const Sidebar = ({ ...props }: SidebarProps) => {
 
 	return (
 		<section className="sidebar">
-			<Logo />
-			<h1>
-				<Link href="http://localhost:3000/">Sidebar</Link>
-			</h1>
+			<Link href="http://localhost:3000/">
+				<div className="sidebar_logo">
+					<Logo />
+				</div>
+			</Link>
+			
+			<Search />
 			{buildFirstLevel()}
 		</section>
 	);
