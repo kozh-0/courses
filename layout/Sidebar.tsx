@@ -1,12 +1,12 @@
-import { RootState, useAppDispatch, useAppSelector } from "../../store";
-import { changeOpenState } from '../../Redux/MenuSlice';
+import { RootState, useAppDispatch, useAppSelector } from "../store";
+import { changeOpenState } from '../Redux/MenuSlice';
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FirstLevelMenuItem, PageItem } from "../../interfaces/menuInterface";
-import { FirstLevelMenu } from "../../helpers/helpers";
-import Logo from '../logo.svg';
+import { FirstLevelMenuItem, PageItem } from "../interfaces/menuInterface";
+import { FirstLevelMenu } from "../helpers/helpers";
+import Logo from './logo.svg';
 import { DetailedHTMLProps, HTMLAttributes } from "react";
-import Search from "../../Components/Search";
+import Search from "../Components/Search";
 
 interface SidebarProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> { }
 

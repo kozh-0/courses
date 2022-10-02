@@ -61,12 +61,12 @@ textarea {
   margin: 20px 0 30px;
   position: relative;
   width: 100%;
-  input {max-width: 220px;}
+  input {width: 100%;}
   button {
     transform: scale(0.8);
     position: absolute;
     right: 0;
-    bottom: -1px;
+    bottom: -1.5px;
     svg {
       transform: scale(1.2);
     }
@@ -211,14 +211,17 @@ main {
   width: 100%; 
 }
 .container {
-  max-width: calc(1200px + 10px);
-  padding: 10px;
+  max-width: calc(1350px);
+  padding: 30px;
   margin: 0 auto;
 }
 
 .sidebar {
-  width: 25%;
+  width: 20%;
   margin-right: 4%;
+  // max-width: 250px;
+  // padding-right: 4%;
+
   &_logo {
     svg {cursor: pointer;}
     svg:hover { fill: $primary_hover}
@@ -243,12 +246,10 @@ main {
     }
   }
 
-
   &_second{
     margin: 15px 0 0 12px;
     padding-left: 32px;
     border-left: 1px solid #DFDFDF;
-
 
     &_title {
       margin: 10px 0;
@@ -270,9 +271,7 @@ main {
     font-size: 14px;
     line-height: 19px;
 
-    &:hover {
-      color: $primary;
-    }
+    &:hover { color: $primary; }
   }
 
   .active { display: block }
@@ -293,6 +292,96 @@ div.TopPageComponent {
     align-items: center;
     justify-content: space-between;
   }
+
+  &_products {
+    margin: 20px 0;
+
+    &_item {
+      background: white;
+      margin: 10px 0;
+      padding: 20px;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+      border-radius: 5px;
+
+      p.p_medium { color: $black; margin-top: 18px;}
+
+      &_head {
+        color: $black;
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 18px;
+        border-bottom: 1px solid $gray-light;
+
+        h3 {color: $black; margin-bottom: 5px;}
+        p {line-height: 10px;}
+        &_title {
+          display: flex;
+          align-items: center;
+          
+          img { border-radius: 5px; }
+          .tag_small { line-height: 16px; }
+        }
+
+
+        &_prices {
+          display: flex;
+          align-items: center;
+          div:nth-child(2) {margin-right: 20px;}
+          h3 { 
+            font-weight: 400; 
+            sub { font-size: 14px; margin-left: -5px;}
+          }
+          .tag_small {margin-left: 5px;}
+        }
+      }
+
+      &_info {
+        margin-top: 15px;
+        display: flex;
+        align-items: center;
+        padding-bottom: 18px;
+        border-bottom: 1px solid $gray-light;
+        &_inner{
+          margin-right: 2%;
+          width: 40%;
+          &_about {
+            p:first-child {font-weight: 700;}
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 10px;
+            line-height: 0.7;
+            margin-bottom: 15px;
+            .hor_splitter {
+              width: auto;
+              border-bottom: 1px dashed $gray-light;
+            }
+          }
+        }
+      }
+      &_btns {
+        margin-top: 20px;
+        .btn_primary {margin-right: 20px;}
+      }
+
+      &_advantages {
+        width: 70%;
+        p {color: $black}
+        p:first-child {font-weight: 700;}
+        &_plus {
+          border-left: 3px solid $green;
+          padding-left: 15px;
+          margin-bottom: 10px;
+        }
+        &_min {
+          border-left: 3px solid $red;
+          padding-left: 15px;
+
+        }
+      }
+    }
+  }
+
+
 
 
   &_vacancy {
@@ -356,7 +445,6 @@ div.TopPageComponent {
       }
     }
   }
-
 
   &_advantages {
     h2 {margin: 30px 0 20px;}

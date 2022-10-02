@@ -1,7 +1,7 @@
 import { FunctionComponent, ReactNode } from "react";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
-import { Sidebar } from "./Menu/Sidebar";
+import { Sidebar } from "./Sidebar";
 
 interface LayoutProps {
     children: ReactNode;
@@ -9,7 +9,7 @@ interface LayoutProps {
 
 export const Layout = ({ children }: LayoutProps) => <>
     <Header />
-    <div className="main_wrapper">
+    <div className="main_wrapper container">
         <Sidebar />
         <main>
             {children}

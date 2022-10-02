@@ -11,7 +11,7 @@ const URL = process.env.NEXT_PUBLIC_DOMAIN;
 
 function TopPage({ firstCategory, page, products }: TopPageProps) {
     // console.log(menu.flatMap(el =>  el.pages.map(p => '/courses/' + p.alias)));
-
+    // console.log(products)
     return (
         <TopPageComponent 
             firstCategory={firstCategory}

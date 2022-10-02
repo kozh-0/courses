@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Advantages from "../Components/Advantages";
 import Card from "../Components/Card";
+import { Product } from "../Components/Product";
 import Sort from "../Components/Sort";
 import { TopLevelCategory, TopPageModel } from "../interfaces/pageInterface";
 import { ProductModel } from "../interfaces/productInterface";
@@ -16,14 +17,14 @@ interface TopPageComponentProps {
 
 export const TopPageComponent = ({ page, products, firstCategory }: TopPageComponentProps) => {
 
-    const prod = useAppSelector((state: RootState) => state.products.list);
+    const productsRTK = useAppSelector((state: RootState) => state.products.list);
     const dispatch = useAppDispatch();
     
     useEffect(() => {
         dispatch(addProducts(products));
     }, [dispatch, products]);
     
-    console.log(prod);
+    console.log(productsRTK);
 
     return (
         <div className="TopPageComponent">
@@ -34,16 +35,14 @@ export const TopPageComponent = ({ page, products, firstCategory }: TopPageCompo
                 </div>
                 <Sort />
             </div>
-            <div>
-                {prod && prod.map(el => (
-                    <div key={el._id}>{el.title}; {el.price} руб | {el.initialRating}</div>
-                ))}
+            <div className="TopPageComponent_products">
+                {productsRTK && productsRTK.map(el => <Product key={el._id} product={el} />)}     
             </div>
 
-            <div style={{marginTop: '20px'}}>
+            {/* <div>
                 <input style={{marginBottom: '20px'}} type="text" placeholder="Text"/><br/>
                 <textarea placeholder="Text area"></textarea>
-            </div>
+            </div> */}
 
             {firstCategory == TopLevelCategory.Courses && <Card page={page} />}
             {<Advantages advantages={page.advantages} tags={page.tags} seoText={page.seoText} />}
