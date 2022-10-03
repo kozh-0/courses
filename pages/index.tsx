@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "../store";
 import { decrement, increment } from "../Redux/CounterSlice";
 // дает правильную типизацию и подсказки на основе созданного стора
 import type { RootState } from "../store";
+// import Cookie from 'js-cookie';
 
 import Arrow from '../Components/imgs/arrow.svg';
 import { Rating } from "../Components/Rating";
@@ -18,10 +19,11 @@ import { withLayout } from "../layout/Layout";
 function Home(props: HomeProps/* { menu }: HomeProps */) {
 	const counter = useAppSelector((state: RootState) => state.counter.value);
 	const dispatch = useAppDispatch();
-
-	// console.log(props);
+	
 	useEffect(() => {
 		dispatch(addMenu(props));
+		localStorage.setItem('menu', JSON.stringify(props));
+		// Cookie.set('menu', JSON.stringify(props));
 	}, [dispatch, props]);
 
 

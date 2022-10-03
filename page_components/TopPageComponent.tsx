@@ -29,7 +29,7 @@ export const TopPageComponent = ({ page, products, firstCategory }: TopPageCompo
     return (
         <div className="TopPageComponent">
             <div className="TopPageComponent_title">
-                <div>
+                <div className="TopPageComponent_title_top">
                     <h1>{page.title}</h1>
                     <div className="tag_medium grey">{products.length}</div>
                 </div>

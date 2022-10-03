@@ -283,6 +283,11 @@ main {
 
 div.TopPageComponent {
   &_title {
+    
+    &_top {
+      padding-right: 10px;
+    }
+    
     div {
       display: flex;
       align-items: center;
@@ -292,34 +297,39 @@ div.TopPageComponent {
     align-items: center;
     justify-content: space-between;
   }
-
+  
   &_products {
     margin: 20px 0;
-
+    
     &_item {
       background: white;
       margin: 10px 0;
       padding: 20px;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
       border-radius: 5px;
-
+      
       p.p_medium { color: $black; margin-top: 18px;}
-
+      
       &_head {
         color: $black;
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
         padding-bottom: 18px;
         border-bottom: 1px solid $gray-light;
-
+        
         h3 {color: $black; margin-bottom: 5px;}
         p {line-height: 10px;}
         &_title {
+          width: 50%;
           display: flex;
           align-items: center;
+          padding-right: 20px;
+          &_img { height: 70px;}
+          &_text { margin-left: 15px;}
           
           img { border-radius: 5px; }
-          .tag_small { line-height: 16px; }
+          .tag_small { line-height: 16px;  margin-bottom: 5px;}
         }
 
 
@@ -343,7 +353,8 @@ div.TopPageComponent {
         border-bottom: 1px solid $gray-light;
         &_inner{
           margin-right: 2%;
-          width: 40%;
+          // width: 40%;
+          width: 70%;
           &_about {
             p:first-child {font-weight: 700;}
             display: grid;
@@ -366,7 +377,7 @@ div.TopPageComponent {
       &_advantages {
         width: 70%;
         p {color: $black}
-        p:first-child {font-weight: 700;}
+        p:first-child {font-weight: 700; margin-bottom: 5px;}
         &_plus {
           border-left: 3px solid $green;
           padding-left: 15px;
@@ -518,6 +529,7 @@ footer .footer_inner {
 }
 
 
+// MEDIA =============================================================================================
 
 
 @media (max-width: 1200px) {
@@ -526,26 +538,61 @@ footer .footer_inner {
     &_total { width: 100% !important; margin-bottom: 15px;}
     &_sallary { width: 100% !important; }
   }
+
+  .TopPageComponent_products_item_head{
+    &_title {
+      width: 100% !important;
+      margin-bottom: 20px;
+    }
+    &_prices {
+      padding-bottom: 10px;
+    }
+  }
 }
+
 @media (max-width: 975px) {
+  .TopPageComponent_products_item {
+    &_info { 
+      flex-wrap: wrap;
+      &_inner { 
+        width: 100% !important;
+        margin: 10px 0;
+      }
+    }
+    &_advantages { width: 100% !important }
+  }
+
   footer .footer_inner {
     flex-direction: column;
     justify-content: space-evenly;
   }
 }
+
 @media (max-width: 765px) {
   .sidebar { display: none }
   main { min-height: calc(100vh - 19px - 72px) }
 }
+
 @media (max-width: 630px) {
   .TopPageComponent_vacancy_data_sallary {
     height: auto !important;
     flex-direction: column;
   }
   .splitter { height: 1px; width: 80%;}
+  .TopPageComponent_title {
+    flex-wrap: wrap;
+    &_top {
+      width: 100%;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+  }
 }
+
 @media (max-width: 590px) {
   main { min-height: calc(100vh - 19px - 100px) }
+
+  
   footer {
     height: 100px;
 
@@ -554,4 +601,32 @@ footer .footer_inner {
       p:first-child { margin: 5px 0 2px;}
     }
   }
+}
+
+@media (max-width: 539px) {
+  .container {padding: 12px;}
+  .TopPageComponent_products_item_head {
+    flex-direction: column;
+    &_title { padding-right: 0 !important;}
+    &_prices {
+      flex-direction: column;
+      align-items: baseline !important;
+      padding: 0;
+      .price_228 {
+        margin-bottom: 20px;
+        &:last-child {
+          display: block !important;
+          margin-bottom: 8px;
+          align-items: flex-start;
+        }
+      }
+
+    }
+  }
+}
+@media (max-width: 440px) {
+  div.TopPageComponent_products_item {
+    padding: 10px !important;
+  }
+
 }

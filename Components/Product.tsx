@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Arrow from './imgs/arrow.svg';
-import { declOfNum, formatRuble } from "../helpers/helpers";
+import { declOfNum, formatRuble, /* shorten */ } from "../helpers/helpers";
 import { ProductModel } from "../interfaces/productInterface";
 import { Rating } from "./Rating";
 
@@ -12,10 +12,13 @@ export const Product = ({ product }: { product: ProductModel }) => {
             <div className="TopPageComponent_products_item_head">
 
                 <div className="TopPageComponent_products_item_head_title">
-                    <div style={{ height: '70px' }}>
-                        <Image width='70px' height='70px' src={process.env.NEXT_PUBLIC_DOMAIN + product.image} alt="img" />
-                    </div>
-                    <div style={{ marginLeft: '15px' }}>
+                    <div className="TopPageComponent_products_item_head_title_img">
+                        <Image width={70} height={70}
+                            src={product.image.startsWith('http') ? product.image : process.env.NEXT_PUBLIC_DOMAIN + product.image} 
+                        alt="img" layout="intrinsic"/>
+                    </div >
+                    <div className="TopPageComponent_products_item_head_title_text">
+                        {/* <h3>{shorten(product.title)}</h3> */}
                         <h3>{product.title}</h3>
                         <div>
                             {product.categories.map(el => <div key={el} className="tag_small ghost">{el}</div>)}
@@ -24,7 +27,7 @@ export const Product = ({ product }: { product: ProductModel }) => {
                 </div>
 
                 <div className="TopPageComponent_products_item_head_prices">
-                    <div>
+                    <div className="price_228">
                         <div style={{ display: 'flex', alignItems: 'center' }}>
                             <h3>{formatRuble(product.price)}</h3>
                             <div className="tag_small green">{formatRuble(product.price - product.oldPrice)}</div>
@@ -32,14 +35,18 @@ export const Product = ({ product }: { product: ProductModel }) => {
                         <p className="p_small">цена</p>
                     </div>
 
-                    <div>
+                    {!!product.credit && <div className="price_228">
                         <h3 style={{ lineHeight: '20px' }}>{formatRuble(product.credit)}<sub>/мес</sub></h3>
                         <p className="p_small">в кредит</p>
-                    </div>
+                    </div>}
 
-                    <div>
+                    <div className="price_228" style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                         <Rating score={product.initialRating} />
-                        <p style={{ marginTop: '8px' }}>{product.reviewCount} {declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}</p>
+                        <p style={{ marginTop: '8px' }}>
+                            {product.reviewCount}&nbsp;
+                            {declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])} |&nbsp;
+                            {product.initialRating}
+                        </p>
                     </div>
 
                 </div>
@@ -60,11 +67,11 @@ export const Product = ({ product }: { product: ProductModel }) => {
 
                 <div className="TopPageComponent_products_item_advantages">
                     {product.advantages && <div className="TopPageComponent_products_item_advantages_plus">
-                        <p style={{ marginBottom: '5px' }}>Преимущества</p>
+                        <p>Преимущества</p>
                         <p>{product.advantages}</p>
                     </div>}
                     {product.disAdvantages && <div className="TopPageComponent_products_item_advantages_min">
-                        <p style={{ marginBottom: '5px' }}>Недостатки</p>
+                        <p>Недостатки</p>
                         <p>{product.disAdvantages}</p>
                     </div>}
                 </div>
