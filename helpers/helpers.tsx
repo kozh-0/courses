@@ -22,4 +22,20 @@ export function declOfNum(num: number, titles: [string, string, string]): string
 	return titles[(num % 100 > 4 && num % 100 < 20) ? 2 : cases[(num % 10 < 5) ? num % 10 : 5]];
 }
 
-// export const shorten = (str: string): string => str.length > 40 ? `${str.slice(0, 40)}...` : str;
+export const shorten = (str: string): string => str.length > 300 ? `${str.slice(0, 300)}...` : str;
+
+
+export function DateToString(date: Date) {
+	const monthsNames = ['Января', 'Декабря', 'Марта', 'Апреля', 'Мая', 'Июля', 'Июня', 'Августа', 'Сентября', 'Октября', 'Декабря'];
+	const year = date.getFullYear().toString();
+	const month = date.getMonth();
+	const day = date.getDay().toString();
+
+	const getHour = () => date.getHours()/10 < 1 ? `0${date.getHours()}` : `${date.getHours()}`;
+	const getMin = () => date.getMinutes()/10 < 1 ? `0${date.getMinutes()}` : `${date.getMinutes()}`;
+	
+	return {
+		date: `${day} ${monthsNames[month]} ${year}`,
+		time: `${getHour()} : ${getMin()}`
+	};
+}

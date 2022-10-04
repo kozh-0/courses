@@ -3,9 +3,13 @@ import Arrow from './imgs/arrow.svg';
 import { declOfNum, formatRuble, /* shorten */ } from "../helpers/helpers";
 import { ProductModel } from "../interfaces/productInterface";
 import { Rating } from "./Rating";
+import ProductReview from "./ProductReview";
+import { useState } from "react";
 
 
 export const Product = ({ product }: { product: ProductModel }) => {
+
+    const [isOpened, setIsOpened] = useState(false);
 
     return (
         <div className="TopPageComponent_products_item">
@@ -14,8 +18,8 @@ export const Product = ({ product }: { product: ProductModel }) => {
                 <div className="TopPageComponent_products_item_head_title">
                     <div className="TopPageComponent_products_item_head_title_img">
                         <Image width={70} height={70}
-                            src={product.image.startsWith('http') ? product.image : process.env.NEXT_PUBLIC_DOMAIN + product.image} 
-                        alt="img" layout="intrinsic"/>
+                            src={product.image.startsWith('http') ? product.image : process.env.NEXT_PUBLIC_DOMAIN + product.image}
+                            alt="img" layout="intrinsic" />
                     </div >
                     <div className="TopPageComponent_products_item_head_title_text">
                         {/* <h3>{shorten(product.title)}</h3> */}
@@ -40,7 +44,7 @@ export const Product = ({ product }: { product: ProductModel }) => {
                         <p className="p_small">в кредит</p>
                     </div>}
 
-                    <div className="price_228" style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                    <div className="price_228" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <Rating score={product.initialRating} />
                         <p style={{ marginTop: '8px' }}>
                             {product.reviewCount}&nbsp;
@@ -59,7 +63,7 @@ export const Product = ({ product }: { product: ProductModel }) => {
                     {product.characteristics.map(el => (
                         <div key={el.name} className="TopPageComponent_products_item_info_inner_about">
                             <p>{el.name}</p>
-                            <div className="hor_splitter"/>
+                            <div className="hor_splitter" />
                             <p>{el.value}</p>
                         </div>
                     ))}
@@ -81,10 +85,14 @@ export const Product = ({ product }: { product: ProductModel }) => {
                 <button className="btn_primary">
                     <a href={product.link} target="_blank" rel="noreferrer">Узнать подробнее</a>
                 </button>
-                <button className="btn_ghost">Читать отзывы &nbsp; <Arrow /></button>
+                {/* Если отзывов нет то не рисовать кнопку */}
+                <button
+                    className="btn_ghost"
+                    onClick={() => setIsOpened(!isOpened)}
+                >Читать отзывы &nbsp; <Arrow /></button>
             </div>
 
-
+            { isOpened && product.reviews.map(el => <ProductReview key={el._id} review={el}/>) }
         </div>
     );
 };
