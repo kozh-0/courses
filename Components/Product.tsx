@@ -5,6 +5,7 @@ import { ProductModel } from "../interfaces/productInterface";
 import { Rating } from "./Rating";
 import ProductReview from "./ProductReview";
 import { useState } from "react";
+import ProductForm from "./ProductForm";
 
 
 export const Product = ({ product }: { product: ProductModel }) => {
@@ -86,13 +87,15 @@ export const Product = ({ product }: { product: ProductModel }) => {
                     <a href={product.link} target="_blank" rel="noreferrer">Узнать подробнее</a>
                 </button>
                 {/* Если отзывов нет то не рисовать кнопку */}
-                <button
+                {!!product.reviews.length && <button
                     className="btn_ghost"
                     onClick={() => setIsOpened(!isOpened)}
-                >Читать отзывы &nbsp; <Arrow /></button>
+                >Читать отзывы &nbsp; <Arrow /></button>}
             </div>
 
             { isOpened && product.reviews.map(el => <ProductReview key={el._id} review={el}/>) }
+
+            <ProductForm productId={product._id}/>
         </div>
     );
 };

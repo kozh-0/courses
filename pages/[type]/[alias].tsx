@@ -1,17 +1,35 @@
 import axios from "axios";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
+import { useEffect } from "react";
 import { FirstLevelMenu } from "../../helpers/helpers";
 import { MenuItem } from "../../interfaces/menuInterface";
 import { TopLevelCategory, TopPageModel } from "../../interfaces/pageInterface";
 import { ProductModel } from "../../interfaces/productInterface";
 import { withLayout } from "../../layout/Layout";
 import { TopPageComponent } from "../../page_components";
+import { addMenu } from "../../Redux/MenuSlice";
+import { RootState, useAppDispatch, useAppSelector } from "../../store";
 const URL = process.env.NEXT_PUBLIC_DOMAIN;
 
-function TopPage({ firstCategory, page, products }: TopPageProps) {
+function TopPage({ firstCategory, page, products, menu }: TopPageProps) {
     // console.log(menu.flatMap(el =>  el.pages.map(p => '/courses/' + p.alias)));
     // console.log(products)
+    const menuRedux = useAppSelector((state: RootState) => state.menu.inner.list);
+    const dispatch = useAppDispatch();
+
+    console.log('allias', menuRedux);
+    
+    useEffect(() => {
+        if (!menuRedux) {
+            dispatch(addMenu({
+                firstCategory,
+                list: menu
+            }));
+        } 
+    }, [dispatch, firstCategory, menu, menuRedux]);
+    
+
     return (
         <TopPageComponent 
             firstCategory={firstCategory}

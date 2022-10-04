@@ -264,7 +264,7 @@ main {
 
   &_third {
     display: block;
-    margin: 0 0 10px 20px;
+    margin: 0 0 10px 15px;
     cursor: pointer;
     color: $gray-dark;
     font-weight: 500;
@@ -525,6 +525,56 @@ div.TopPageComponent {
       }
     }
   }
+
+
+  &_form {
+    color: $black;
+    border-top: 1px solid $gray-light;
+    padding-top: 30px;
+    &_top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        input { margin: 10px 20px 20px 0 }
+      }
+      &_rating {
+        margin-bottom: 10px;
+      }
+    }
+    textarea {
+      width: 100%;
+      height: 76px;
+    }
+    &_send {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 20px;
+      button { width: 150px; margin-right: 20px; }
+    }
+
+
+    &_success {
+      margin-top: 20px;
+      padding: 20px;
+      position: relative;
+      border-radius: 5px;
+      color: $black !important;
+      span {
+        cursor: pointer;
+        padding: 3px;
+        color: green;
+        position: absolute;
+        right: 10px;
+        top: 5px;
+      }
+    }
+  }
 }
 
 
@@ -587,6 +637,8 @@ footer .footer_inner {
     &_advantages { width: 100% !important }
   }
 
+  
+
   footer .footer_inner {
     flex-direction: column;
     justify-content: space-evenly;
@@ -605,6 +657,10 @@ footer .footer_inner {
 @media (max-width: 765px) {
   .sidebar { display: none }
   main { min-height: calc(100vh - 19px - 72px) }
+  .review_form_top_title { 
+    width: 100%; 
+    input {margin-right: 0 !important;}
+  }
 }
 
 @media (max-width: 630px) {
@@ -658,6 +714,17 @@ footer .footer_inner {
     }
   }
 }
+@media (max-width: 500px) {
+  .review_form_top {
+    &_rating {width: 100%;}
+    &_title {
+      flex-wrap: wrap;
+      input {width: 100%; margin-right: 0 !important;}
+    }
+  }
+
+}
+
 @media (max-width: 440px) {
   div.TopPageComponent_products_item {
     padding: 10px !important;

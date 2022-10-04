@@ -38,7 +38,7 @@ export default function ProductReview({ review }: { review: ReviewModel }) {
                     </> : <>
                         <p>{review.description}</p>
                         <div
-                            style={{ fontWeight: '700', textAlign: 'center', cursor: 'pointer' }}
+                            style={{ fontWeight: '700', cursor: 'pointer' }}
                             onClick={() => setIsOpened(!isOpened)}
                         >Свернуть</div>
                     </>)}
