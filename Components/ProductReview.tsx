@@ -43,7 +43,7 @@ export default function ProductReview({ review }: { review: ReviewModel }) {
                         >Свернуть</div>
                     </>)}
                 </div>
-
+                
             </div>
         </div>
     );

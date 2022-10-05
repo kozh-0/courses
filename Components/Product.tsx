@@ -93,9 +93,10 @@ export const Product = ({ product }: { product: ProductModel }) => {
                 >Читать отзывы &nbsp; <Arrow /></button>}
             </div>
 
-            { isOpened && product.reviews.map(el => <ProductReview key={el._id} review={el}/>) }
-
-            <ProductForm productId={product._id}/>
+            {isOpened && <>
+                {product.reviews.map(el => <ProductReview key={el._id} review={el} />)}
+                <ProductForm productId={product._id} />
+            </>}
         </div>
     );
 };

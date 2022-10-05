@@ -4,9 +4,10 @@ import Star from './imgs/star.svg';
 interface IRating {
 	score: number;
 	isEditable?: boolean;
+	setScore?: (score: number) => void;
 }
 
-export const Rating = ({ score, isEditable = false }: IRating) => {
+export const Rating = ({ score, isEditable = false, setScore }: IRating) => {
 
 
 	const [ratingArr, setRatingArr] = useState<JSX.Element[]>(new Array(5).fill(<></>));
@@ -19,14 +20,19 @@ export const Rating = ({ score, isEditable = false }: IRating) => {
 					onKeyDown={(e: KeyboardEvent<SVGElement>) => (e.key === 'Enter' && isEditable) && setStars(i + 1)}
 					onMouseEnter={() => isEditable && construncRating(i + 1)}
 					onMouseLeave={() => isEditable && construncRating(stars)}
-					onClick={() => isEditable && setStars(i + 1)}
+					onClick={() => clickHandler(i) }
 					className={(i < currentRating) ? 'filled' : ''}
-					
 				/>
 			</span>
 		);
 		setRatingArr(updatedArray);
 	};
+
+	function clickHandler(i: number) {
+		isEditable && setStars(i + 1);
+		if (!setScore) return;
+		setScore(i + 1);
+	}
 
 	useEffect(() => {
 		construncRating(stars);

@@ -30,7 +30,7 @@ export default function ProductForm({ productId }: { productId: string }) {
                         control={control}
                         name='rating'
                         render={({ field }) => (
-                            <Rating isEditable={true} score={field.value} />
+                            <Rating isEditable={true} score={field.value} setScore={field.onChange}/>
                         )}
                     />
                 </div>

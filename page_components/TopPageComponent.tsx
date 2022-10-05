@@ -39,11 +39,6 @@ export const TopPageComponent = ({ page, products, firstCategory }: TopPageCompo
                 {productsRTK && productsRTK.map(el => <Product key={el._id} product={el} />)}     
             </div>
 
-            {/* <div>
-                <input style={{marginBottom: '20px'}} type="text" placeholder="Text"/><br/>
-                <textarea placeholder="Text area"></textarea>
-            </div> */}
-
             {firstCategory == TopLevelCategory.Courses && <Card page={page} />}
             {<Advantages advantages={page.advantages} tags={page.tags} seoText={page.seoText} />}
         </div>
