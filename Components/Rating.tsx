@@ -5,9 +5,10 @@ interface IRating {
 	score: number;
 	isEditable?: boolean;
 	setScore?: (score: number) => void;
+	error?: string;
 }
 
-export const Rating = ({ score, isEditable = false, setScore }: IRating) => {
+export const Rating = ({ score, isEditable = false, setScore, error }: IRating) => {
 
 
 	const [ratingArr, setRatingArr] = useState<JSX.Element[]>(new Array(5).fill(<></>));
@@ -43,7 +44,7 @@ export const Rating = ({ score, isEditable = false, setScore }: IRating) => {
 	}, [stars]);
 
 	return (
-		<section style={{ display: 'flex' }}>
+		<section style={ !error ? { display: 'flex' } : {display: 'flex', stroke: '#FC836D'}}>
 			{ratingArr.map((el, i) => <React.Fragment key={i}>{el}</React.Fragment>)}
 		</section>
 	);
