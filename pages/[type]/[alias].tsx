@@ -18,7 +18,7 @@ function TopPage({ firstCategory, page, products, menu }: TopPageProps) {
     const menuRedux = useAppSelector((state: RootState) => state.menu.inner.list);
     const dispatch = useAppDispatch();
 
-    console.log('allias', menuRedux);
+    // console.log('allias', menuRedux);
     
     useEffect(() => {
         if (!menuRedux) {

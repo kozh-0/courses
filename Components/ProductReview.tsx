@@ -28,17 +28,17 @@ export default function ProductReview({ review }: { review: ReviewModel }) {
                 <div>
                     {review.description.length < 300 ? (
                         <p>{review.description}</p>
-                    ) : ( !isOpened ? <>
+                    ) : (!isOpened ? <>
                         <p>{shorten(review.description)}
                             <span
-                                style={{ fontWeight: '700', cursor: 'pointer' }}
+                                className="review_toggler"
                                 onClick={() => setIsOpened(!isOpened)}
                             >Развернуть</span>
                         </p>
                     </> : <>
                         <p>{review.description}</p>
                         <div
-                            style={{ fontWeight: '700', cursor: 'pointer' }}
+                            className="review_toggler"
                             onClick={() => setIsOpened(!isOpened)}
                         >Свернуть</div>
                     </>)}

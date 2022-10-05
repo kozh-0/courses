@@ -4,10 +4,10 @@ import { ProductModel } from '../interfaces/productInterface';
 
 const initialState = { 
     list: [],
-    status: ''
+    status: 'rating'
  } as { 
     list: ProductModel[];
-    status: 'rating' | 'price' | '';
+    status: 'rating' | 'price';
 };
 
 export const ProductSlice = createSlice({
@@ -15,7 +15,8 @@ export const ProductSlice = createSlice({
     initialState,
     reducers: {
         addProducts: (state, action: PayloadAction<ProductModel[]>) => {
-            state.list = action.payload;
+            state.list = action.payload.sort((a,b) => a.initialRating > b.initialRating ? -1 : 1);
+            state.status = 'rating';
         },
         sortProductsByRating: (state) => {
             state.list.sort((a,b) => a.initialRating > b.initialRating ? -1 : 1);
