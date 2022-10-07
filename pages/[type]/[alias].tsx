@@ -12,6 +12,7 @@ import { TopPageComponent } from "../../page_components";
 import { addMenu } from "../../Redux/MenuSlice";
 import { RootState, useAppDispatch, useAppSelector } from "../../store";
 
+import Head from "next/head";
 
 function TopPage({ firstCategory, page, products, menu }: TopPageProps) {
     // console.log(menu.flatMap(el =>  el.pages.map(p => '/courses/' + p.alias)));
@@ -20,24 +21,31 @@ function TopPage({ firstCategory, page, products, menu }: TopPageProps) {
     const dispatch = useAppDispatch();
 
     // console.log('allias', menuRedux);
-    
+
     useEffect(() => {
         if (!menuRedux) {
             dispatch(addMenu({
                 firstCategory,
                 list: menu
             }));
-        } 
+        }
     }, [dispatch, firstCategory, menu, menuRedux]);
-    
 
-    return (
-        <TopPageComponent 
+
+    return <>
+        <Head>
+            <title>{page.metaTitle}</title>
+            <meta name="description" content={page.metaDescription}/>
+            <meta property="og:title" content={page.metaTitle}/>
+            <meta property="og:description" content={page.metaDescription}/>
+            <meta property="og:type" content="article"/>
+        </Head>
+        <TopPageComponent
             firstCategory={firstCategory}
             page={page}
             products={products}
         />
-    );
+    </>;
 }
 export default withLayout(TopPage);
 
