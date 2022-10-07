@@ -103,6 +103,11 @@ h3 {
   font-size: 14px;
   transition: all .2s ease;
 }
+div button:hover { 
+  transition: all 0.2s ease;
+  transform: scale(1.1) !important;
+
+}
 button.btn { 
   @extend %base_btn; 
   &:hover { background: #cccccc;}
@@ -131,6 +136,40 @@ button.btn_ghost {
 }
 
 
+.icon_btn {
+  width: 40px;
+  height: 40px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+.primary {
+  background-color: $primary;
+  svg * { fill: $white }
+  &:hover { background: $primary_hover }
+}
+.white {
+  background-color: $white;
+  svg * { fill: $primary }
+  &:hover svg * { fill: $white }
+
+  &:hover { background-color: $primary; }
+}
+
+.up {
+  width: 40px;
+  height: 40px;
+  background: $primary;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  bottom: 30px;
+  right: 30px;
+  position: fixed;
+  border: none;
+  cursor: pointer;
+  &:hover { background: $primary_hover }
+}
 
 // ПАРАГРАФЫ ====================================================================================
 
@@ -188,24 +227,44 @@ div.primary {
   border: 1px solid $primary;
 }
 
-// UP ====================================================================================
-.up {
-  width: 40px;
-  height: 40px;
-  background: $primary;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
-  border-radius: 10px;
-  bottom: 30px;
-  right: 30px;
-  position: fixed;
-  border: none;
-  cursor: pointer;
-  &:hover { background: $primary_hover }
-}
+
 
 // Header ====================================================================================
 header {
-  background: $green;
+  display: none;
+  padding: 10px ;
+  
+  .header_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+  }
+
+  .mobileMenu {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #F5F6F8;
+    overflow-y: scroll;
+    padding: 20px 10px;
+    button.white {
+      position: fixed !important;
+      z-index: 11;
+      top: 15px;
+      right: 15px;
+    }
+
+    .sidebar {
+      display: block;
+      width: auto;
+    }
+
+    
+  }
 }
 
 
@@ -718,6 +777,7 @@ footer .footer_inner {
 
 @media (max-width: 765px) {
   .sidebar { display: none }
+  header {display: block;}
   main { min-height: calc(100vh - 19px - 72px) }
   .review_form_top_title { 
     width: 100%; 
@@ -804,4 +864,9 @@ footer .footer_inner {
     &_item {padding: 10px;}
     &_form {padding: 10px;}
   }
+}
+
+@media (max-width: 416px) {
+  .TopPageComponent_products_item_btns .btn_primary{ margin-bottom: 10px;}
+
 }

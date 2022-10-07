@@ -1,7 +1,7 @@
 import useScrollY from '../helpers/useScrollY';
-import UpIcon from './imgs/up.svg';
 import { motion, useAnimation } from 'framer-motion';
 import { useEffect } from 'react';
+import ButtonIcon from './ButtonIcon';
 
 export default function Up() {
     const controls = useAnimation();
@@ -16,13 +16,13 @@ export default function Up() {
     }, [y, controls]);
 
     return (
-        <motion.button
+        <motion.div
             className="up"
             onClick={scrollToTop}
             animate={controls}
             initial={{ opacity: 0 }}
         >
-            <UpIcon />
-        </motion.button>
+            <ButtonIcon color='primary' icon='up' onClick={scrollToTop} />
+        </motion.div>
     );
 }
