@@ -4,13 +4,23 @@ import { declOfNum, formatRuble, /* shorten */ } from "../helpers/helpers";
 import { ProductModel } from "../interfaces/productInterface";
 import { Rating } from "./Rating";
 import ProductReview from "./ProductReview";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ProductForm from "./ProductForm";
 
 
 export const Product = ({ product }: { product: ProductModel }) => {
 
     const [isOpened, setIsOpened] = useState(false);
+    const reviewRef = useRef<HTMLDivElement>(null);
+
+    const scrollToReview = () => {
+        if (!product.reviews.length) return;
+        setIsOpened(true);
+        reviewRef.current?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    };
 
     return (
         <div className="TopPageComponent_products_item">
@@ -45,12 +55,14 @@ export const Product = ({ product }: { product: ProductModel }) => {
                         <p className="p_small">в кредит</p>
                     </div>}
 
-                    <div className="price_228" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <div className="price_228">
                         <Rating score={product.initialRating} />
                         <p style={{ marginTop: '8px' }}>
-                            {product.reviewCount}&nbsp;
-                            {declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])} |&nbsp;
-                            {product.initialRating}
+                            <a href="#ref" onClick={scrollToReview}>
+                                {product.reviewCount}&nbsp;
+                                {declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])} |&nbsp;
+                                {product.initialRating}
+                            </a>
                         </p>
                     </div>
 
@@ -87,12 +99,13 @@ export const Product = ({ product }: { product: ProductModel }) => {
                     <a href={product.link} target="_blank" rel="noreferrer">Узнать подробнее</a>
                 </button>
                 {/* Если отзывов нет то не рисовать кнопку */}
-                {!!product.reviews.length && <button
+                <button
                     className="btn_ghost"
                     onClick={() => setIsOpened(!isOpened)}
-                >Читать отзывы &nbsp; <Arrow /></button>}
+                >{product.reviews.length ? 'Читать отзывы' : 'Оставить комментарий'} &nbsp; <Arrow /></button>
             </div>
 
+            {!!product.reviews.length && <span ref={reviewRef}></span>}
             {isOpened && <>
                 {product.reviews.map(el => <ProductReview key={el._id} review={el} />)}
                 <ProductForm productId={product._id} />

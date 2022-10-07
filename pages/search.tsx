@@ -1,5 +1,6 @@
 import axios from "axios";
 import { GetStaticProps } from "next";
+import { API } from "../helpers/api";
 import { MenuItem } from "../interfaces/menuInterface";
 import { withLayout } from "../layout/Layout";
 
@@ -17,7 +18,7 @@ export default withLayout(Search);
 // По-простому, это функция которая работает только на страницах папка pages, и возвращает в файл страницы пропсы по запросу
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
 	const firstCategory = 0;
-	const { data: list } = await axios.post<MenuItem[]>(process.env.NEXT_PUBLIC_DOMAIN + '/api/top-page/find', { firstCategory });
+	const { data: list } = await axios.post<MenuItem[]>(API.topPage.find, { firstCategory });
 
 	return {
 		props: { 

@@ -1,4 +1,7 @@
+import axios from "axios";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { API } from "../helpers/api";
 import { Rating } from "./Rating";
 
 interface IProductForm {
@@ -10,13 +13,26 @@ interface IProductForm {
 
 export default function ProductForm({ productId }: { productId: string }) {
 
-    const { register, control, handleSubmit, formState: { errors } } = useForm<IProductForm>();
-    console.log(errors);
-
-    const onSubmit = (data: IProductForm) => {
-        console.log(data);
+    const { register, control, handleSubmit, formState: { errors }, reset } = useForm<IProductForm>();
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [error, setError] = useState<string>();
+    
+    const onSubmit = async (formData: IProductForm) => {
+        try {
+            const { data } = await axios.post<{ message: string }>(API.review.createDemo, { ...formData, productId});
+            if (data.message) {
+                setIsSuccess(true);
+                reset();
+            } else {
+                setError('Что-то пошло не так');
+            }
+        } catch (e) {
+            if (e instanceof Error) {
+                setError(e.message);
+            }
+        }
     };
-
+    
     return (
         // Функция которая вызовется после сабмита
         <form className="review_form" onSubmit={handleSubmit(onSubmit)}>
@@ -71,11 +87,23 @@ export default function ProductForm({ productId }: { productId: string }) {
                 <button className="btn_primary">Отправить</button>
                 <span>* Перед публикацией отзыв пройдет предварительную модерацию и проверку</span>
             </div>
-            <div className="review_form_success green">
+            {isSuccess && <div className="review_form_success green">
                 <div>Ваш отзыв отправлен</div>
-                <div style={{ fontWeight: '500', marginTop: '5px' }}>Спасибо, ваш отзыв будет опубликован после проверки.</div>
-                <span>&#10006;</span>
-            </div>
+                <div style={{ fontWeight: '500', marginTop: '5px' }}>
+                    Спасибо, ваш отзыв будет опубликован после проверки.
+                </div>
+                <span onClick={() => setIsSuccess(false)}>&#10006;</span>
+            </div>}
+            {error && <div className="review_form_success" style={{background: '#FDB7B7'}}>
+                <div>Что-то пошло не так, попробуйте обновить страницу</div>
+                <div style={{ fontWeight: '500', marginTop: '5px' }}>
+                    Спасибо, ваш отзыв будет опубликован после проверки.
+                </div>
+                <span 
+                    onClick={() => setError(undefined)}
+                    style={{color: 'black'}}
+                >&#10006;</span>
+            </div>}
         </form>
     );
 }

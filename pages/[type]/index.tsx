@@ -1,6 +1,7 @@
 import axios from "axios";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
+import { API } from "../../helpers/api";
 import { FirstLevelMenu } from "../../helpers/helpers";
 import { MenuItem } from "../../interfaces/menuInterface";
 import { Layout } from "../../layout/Layout";
@@ -29,7 +30,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async ({ params }: GetS
 
     if (!firstCategoryItem) return { notFound: true };
 
-    const { data: list } = await axios.post<MenuItem[]>(process.env.NEXT_PUBLIC_DOMAIN + '/api/top-page/find', { 
+    const { data: list } = await axios.post<MenuItem[]>(API.topPage.find, { 
         firstCategory: firstCategoryItem.id
     });
 

@@ -13,6 +13,7 @@ import { MenuItem } from "../interfaces/menuInterface";
 import Todos from "../layout/Todos";
 import { addMenu } from "../Redux/MenuSlice";
 import { withLayout } from "../layout/Layout";
+import { API } from "../helpers/api";
 
 
 function Home(props: HomeProps/* { menu }: HomeProps */) {
@@ -59,7 +60,7 @@ export default withLayout(Home);
 // По-простому, это функция которая работает только на страницах папка pages, и возвращает в файл страницы пропсы по запросу
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
 	const firstCategory = 0;
-	const { data: list } = await axios.post<MenuItem[]>(process.env.NEXT_PUBLIC_DOMAIN + '/api/top-page/find', { firstCategory });
+	const { data: list } = await axios.post<MenuItem[]>(API.topPage.find, { firstCategory });
 
 	return {
 		props: {

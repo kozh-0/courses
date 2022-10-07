@@ -8,7 +8,7 @@ interface IRating {
 	error?: string;
 }
 
-export const Rating = ({ score, isEditable = false, setScore, error }: IRating) => {
+export const Rating = ({ score = 0, isEditable = false, setScore, error }: IRating) => {
 
 
 	const [ratingArr, setRatingArr] = useState<JSX.Element[]>(new Array(5).fill(<></>));
