@@ -32,17 +32,27 @@ export const Sidebar = ({ ...props }: SidebarProps) => {
 			opacity: 1,
 			height: 'auto',
 			marginLeft: 7,
-			marginBottom: 10 
+			marginBottom: 10
 		},
 		hidden: { opacity: 0, height: 0 }
 	};
 
-	// console.log(menu);
 
+	const openSecondLevelByKey = (key: any, idx: number) => {
+		if (key.code === 'Space' || key.code === 'Enter') {
+			key.preventDefault();
+			dispatch(changeOpenState(idx));
+		}
+	};
 	const buildSecondLevel = (menuItem: FirstLevelMenuItem) => (
 		<div className="sidebar_second" {...props}>
 			{menu.map((m, idx) => (
-				<div key={m._id.secondCategory} style={{overflow: 'hidden'}}>
+				<div 
+					tabIndex={0} 
+					onKeyDown={(key) => openSecondLevelByKey(key, idx)}
+					key={m._id.secondCategory} 
+					style={{ overflow: 'hidden' }}
+				>
 					<div className="sidebar_second_title"
 						onClick={() => dispatch(changeOpenState(idx))}>
 						{m._id.secondCategory}
@@ -52,20 +62,22 @@ export const Sidebar = ({ ...props }: SidebarProps) => {
 						variants={variants}
 						initial={m.isOpened ? 'visible' : 'hidden'}
 						animate={m.isOpened ? 'visible' : 'hidden'}
-					// className={m.isOpened ? 'active' : 'disable'}
 					>
-						{buildThirdLevel(m.pages, menuItem.route)}
+						{buildThirdLevel(m.pages, menuItem.route, m.isOpened ?? false)}
 					</motion.div>
 				</div>
 			))}
 		</div>
 	);
 
-	const buildThirdLevel = (pages: PageItem[], route: string) => <>
+	const buildThirdLevel = (pages: PageItem[], route: string, isOpened: boolean) => <>
 		{pages.map(p => (
 			<motion.div key={p._id} variants={variantsChildren}>
 				<Link href={`/${route}/${p.alias}`}>
-					<a className={`/${route}/${p.alias}` == router.asPath ? "sidebar_third onPath" : "sidebar_third"}>
+					<a
+						tabIndex={isOpened ? 0 : -1}
+						className={`/${route}/${p.alias}` == router.asPath ? "sidebar_third onPath" : "sidebar_third"}
+					>
 						{p.category}
 					</a>
 				</Link>

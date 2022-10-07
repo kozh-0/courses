@@ -1,18 +1,14 @@
-import { DetailedHTMLProps, HTMLAttributes } from "react";
+import GitHub from './github.svg';
 
-interface FooterProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> { }
 
-export const Footer = ({ ...props }: FooterProps) => {
-	return (
-		<footer {...props}>
-			<div className="footer_inner">
-				<p>OwlTop © 2020 - 2021 Все права защищены</p>
-				<div>
-					<a href="#"><p>Пользовательское соглашение</p></a>
-					<a href="#"><p>Политика конфиденциальности</p></a>
-
-				</div>
-			</div>
-		</footer>
-	);
-};
+export const Footer = () => <footer>
+	<div className="footer_inner">
+		<div>
+			<a href="https://github.com/kozh-0" target='_blank' rel="noreferrer">
+				<span>GitHub</span>
+				<GitHub/>
+			</a>
+		</div>
+		<p>OwlTop © 2020 - 2021</p>
+	</div>
+</footer>;

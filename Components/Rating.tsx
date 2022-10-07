@@ -17,7 +17,7 @@ export const Rating = ({ score = 0, isEditable = false, setScore, error }: IRati
 	const construncRating = (currentRating: number) => {
 		const updatedArray = ratingArr.map((_, i) =>
 			<span key={i} className='star_parent' style={isEditable ? {} : {cursor: 'auto'}}>
-				<Star tabIndex={1}
+				<Star tabIndex={0}
 					onKeyDown={(e: KeyboardEvent<SVGElement>) => (e.key === 'Enter' && isEditable) && setStars(i + 1)}
 					onMouseEnter={() => isEditable && construncRating(i + 1)}
 					onMouseLeave={() => isEditable && construncRating(stars)}
