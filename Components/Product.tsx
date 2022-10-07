@@ -4,11 +4,12 @@ import { declOfNum, formatRuble, /* shorten */ } from "../helpers/helpers";
 import { ProductModel } from "../interfaces/productInterface";
 import { Rating } from "./Rating";
 import ProductReview from "./ProductReview";
-import { useRef, useState } from "react";
+import { ForwardedRef, forwardRef, useRef, useState } from "react";
 import ProductForm from "./ProductForm";
+import { motion } from 'framer-motion';
 
-
-export const Product = ({ product }: { product: ProductModel }) => {
+// eslint-disable-next-line react/display-name
+export const Product = motion(forwardRef(({ product }: { product: ProductModel }, ref:ForwardedRef<HTMLDivElement>) => {
 
     const [isOpened, setIsOpened] = useState(false);
     const reviewRef = useRef<HTMLDivElement>(null);
@@ -23,7 +24,7 @@ export const Product = ({ product }: { product: ProductModel }) => {
     };
 
     return (
-        <div className="TopPageComponent_products_item">
+        <div className="TopPageComponent_products_item" ref={ref}>
             <div className="TopPageComponent_products_item_head">
 
                 <div className="TopPageComponent_products_item_head_title">
@@ -112,4 +113,4 @@ export const Product = ({ product }: { product: ProductModel }) => {
             </>}
         </div>
     );
-};
+}));

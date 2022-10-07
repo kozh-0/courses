@@ -36,7 +36,7 @@ export const TopPageComponent = ({ page, products, firstCategory }: TopPageCompo
                 <Sort />
             </div>
             <div className="TopPageComponent_products">
-                {productsRTK && productsRTK.map(el => <Product key={el._id} product={el} />)}     
+                {productsRTK && productsRTK.map(el => <Product layout key={el._id} product={el} />)}     
             </div>
 
             {firstCategory == TopLevelCategory.Courses && <Card page={page} />}

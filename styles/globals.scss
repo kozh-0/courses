@@ -252,7 +252,8 @@ main {
     border-left: 1px solid #DFDFDF;
 
     &_title {
-      margin: 10px 0;
+      // &::parent {overflow: hidden;}
+      margin: 5px 0;
       cursor: pointer;
       text-transform: uppercase;
       color: $gray-dark;
