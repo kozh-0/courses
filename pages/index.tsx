@@ -1,45 +1,36 @@
 import axios from "axios";
 import { GetStaticProps } from "next";
-import { useEffect } from "react";
-
-import { useAppDispatch, useAppSelector } from "../store";
-import { decrement, increment } from "../Redux/CounterSlice";
+import { useEffect, useState } from "react";
+import { useAppDispatch } from "../store";
 // дает правильную типизацию и подсказки на основе созданного стора
-import type { RootState } from "../store";
 
 import Arrow from '../Components/imgs/arrow.svg';
 import { Rating } from "../Components/Rating";
 import { MenuItem } from "../interfaces/menuInterface";
-import Todos from "../layout/Todos";
 import { addMenu } from "../Redux/MenuSlice";
 import { withLayout } from "../layout/Layout";
 import { API } from "../helpers/api";
 
 
+
 function Home(props: HomeProps/* { menu }: HomeProps */) {
-	const counter = useAppSelector((state: RootState) => state.counter.value);
+
 	const dispatch = useAppDispatch();
-	
+	const [counter, setCounter] = useState(0);
+
 	useEffect(() => {
 		dispatch(addMenu(props));
 	}, [dispatch, props]);
 
-
 	return <>
 		<h1>{counter}</h1>
-		<button
-			className="btn_primary"
-			onClick={() => dispatch(increment())}
-		>increment</button>
-		<button
-			className="btn"
-			onClick={() => dispatch(decrement())}
-		>decrement</button>
+		<button className="btn_primary" onClick={() => setCounter(prev => prev + 1)}>increment</button>
+		<button className="btn" onClick={() => setCounter(prev => prev - 1)}>decrement</button>
 		<button className="btn_ghost">
 			btn_ghost &nbsp;<Arrow />
 		</button>
 
-		<Rating score={0}/>
+		<Rating score={0} isEditable={true} />
 
 		<p className='p_small'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s.</p>
 
@@ -48,9 +39,6 @@ function Home(props: HomeProps/* { menu }: HomeProps */) {
 		<div className='tag_small grey'>hh.ru</div>
 		<div className='tag_medium green'>hh.ru</div>
 		<div className='tag_small primary'>hh.ru</div>
-
-		<Todos />
-
 	</>;
 }
 export default withLayout(Home);

@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "prepare": "husky install",
+    "export": "next export",
     "dev": "next dev",
     "debug": "cross-env NODE_OPTIONS='--inspect' next dev",
     "build": "next build",

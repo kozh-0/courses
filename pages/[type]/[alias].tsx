@@ -11,16 +11,13 @@ import { withLayout } from "../../layout/Layout";
 import { TopPageComponent } from "../../page_components";
 import { addMenu } from "../../Redux/MenuSlice";
 import { RootState, useAppDispatch, useAppSelector } from "../../store";
-
+import Error404 from '../404';
 import Head from "next/head";
 
 function TopPage({ firstCategory, page, products, menu }: TopPageProps) {
-    // console.log(menu.flatMap(el =>  el.pages.map(p => '/courses/' + p.alias)));
-    // console.log(products)
+
     const menuRedux = useAppSelector((state: RootState) => state.menu.inner.list);
     const dispatch = useAppDispatch();
-
-    // console.log('allias', menuRedux);
 
     useEffect(() => {
         if (!menuRedux) {
@@ -31,14 +28,17 @@ function TopPage({ firstCategory, page, products, menu }: TopPageProps) {
         }
     }, [dispatch, firstCategory, menu, menuRedux]);
 
-
+    if (!page || !products) {
+        return <Error404 />;
+    }
+    // сделали проверку если нет данных, то и не будем генерить странцу
     return <>
         <Head>
             <title>{page.metaTitle}</title>
-            <meta name="description" content={page.metaDescription}/>
-            <meta property="og:title" content={page.metaTitle}/>
-            <meta property="og:description" content={page.metaDescription}/>
-            <meta property="og:type" content="article"/>
+            <meta name="description" content={page.metaDescription} />
+            <meta property="og:title" content={page.metaTitle} />
+            <meta property="og:description" content={page.metaDescription} />
+            <meta property="og:type" content="article" />
         </Head>
         <TopPageComponent
             firstCategory={firstCategory}
