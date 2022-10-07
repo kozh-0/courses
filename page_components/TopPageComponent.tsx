@@ -33,7 +33,7 @@ export const TopPageComponent = ({ page, products, firstCategory }: TopPageCompo
                     <h1>{page.title}</h1>
                     <div className="tag_medium grey">{products.length}</div>
                 </div>
-                <Sort />
+                {products.length > 1 && <Sort />}
             </div>
             <div className="TopPageComponent_products">
                 {productsRTK && productsRTK.map(el => <Product layout key={el._id} product={el} />)}     

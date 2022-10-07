@@ -9,6 +9,7 @@ export const Footer = () => <footer>
 				<GitHub/>
 			</a>
 		</div>
-		<p>OwlTop © 2020 - 2021</p>
+		{/* <p>OwlTop © 2020 - 2021</p> */}
+		<p>kozh inc. © Все права защищены законом</p>
 	</div>
 </footer>;

@@ -62,7 +62,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         paths = paths.concat(menu.flatMap(el => el.pages.map(p => `/${m.route}/${p.alias}`)));
     }
     // так как это на сервере обрабатывается, то будет в консоли, но не в браузере
-    console.log(paths);
+    // console.log(paths);
 
     return {
         paths,

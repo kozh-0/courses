@@ -1,18 +1,42 @@
 import axios from "axios";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
+import Image from "next/image";
 import { ParsedUrlQuery } from "querystring";
+import { useEffect } from "react";
 import { API } from "../../helpers/api";
 import { FirstLevelMenu } from "../../helpers/helpers";
 import { MenuItem } from "../../interfaces/menuInterface";
 import { Layout } from "../../layout/Layout";
+import { addMenu } from "../../Redux/MenuSlice";
+import { RootState, useAppDispatch, useAppSelector } from "../../store";
 
 
-export default function Type({firstCategory}: HomeProps) {
+export default function Type(props: HomeProps) {
+
+    const menuRedux = useAppSelector((state: RootState) => state.menu.inner.list);
+    const dispatch = useAppDispatch();
+    console.log(menuRedux);
+    
+    useEffect(() => {
+        if (!menuRedux) {
+            dispatch(addMenu(props));
+        }
+    }, [dispatch, menuRedux, props]);
 
     return <Layout>
-        <h1>Type: {firstCategory}</h1>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', textAlign: 'center' }}>
+            <h1 style={{marginBottom: '10px'}}>Тут пока ничего нет ¯\_(ツ)_/¯</h1>
+            <Image
+                width={280}
+                height={150}
+                src="/nothing.gif"
+                alt="gif"
+            />
+        </div>
     </Layout>;
+
 }
+
 
 // ЭТО SERVER SIDE RENDERING
 // Фишка получения данных таким образом в том, что приходящий html в network не пустой <div id='root'></div>, а полноценно заполненный html, что дает робам знать что страница хорошая для SEO
@@ -30,7 +54,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async ({ params }: GetS
 
     if (!firstCategoryItem) return { notFound: true };
 
-    const { data: list } = await axios.post<MenuItem[]>(API.topPage.find, { 
+    const { data: list } = await axios.post<MenuItem[]>(API.topPage.find, {
         firstCategory: firstCategoryItem.id
     });
 
