@@ -188,6 +188,21 @@ div.primary {
   border: 1px solid $primary;
 }
 
+// UP ====================================================================================
+.up {
+  width: 40px;
+  height: 40px;
+  background: $primary;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  bottom: 30px;
+  right: 30px;
+  position: fixed;
+  border: none;
+  cursor: pointer;
+  &:hover { background: $primary_hover }
+}
+
 // Header ====================================================================================
 header {
   background: $green;
@@ -265,7 +280,7 @@ main {
 
   &_third {
     display: block;
-    margin: 0 0 10px 12px;
+    // margin: 0 0 10px 10px;
     cursor: pointer;
     color: $gray-dark;
     font-weight: 500;
@@ -275,8 +290,8 @@ main {
     &:hover { color: $primary }
   }
 
-  .active { display: block }
-  .disable { display: none }
+  // .active { display: block }
+  // .disable { display: none }
   .onPath { color: $primary; font-weight: 700; font-size: 16px;}
 }
 

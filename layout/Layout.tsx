@@ -1,4 +1,5 @@
 import { FunctionComponent, ReactNode } from "react";
+import Up from "../Components/Up";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { Sidebar } from "./Sidebar";
@@ -15,6 +16,7 @@ export const Layout = ({ children }: LayoutProps) => <>
             {children}
         </main>
     </div>
+    <Up/>
     <Footer />
 </>;
 

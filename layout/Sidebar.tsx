@@ -21,7 +21,7 @@ export const Sidebar = ({ ...props }: SidebarProps) => {
 		visible: {
 			transition: {
 				when: 'beforeChildren',
-				straggerChildren: 1
+				straggerChildren: 0.1
 			},
 			marginBottom: 20,
 		},
@@ -30,8 +30,9 @@ export const Sidebar = ({ ...props }: SidebarProps) => {
 	const variantsChildren = {
 		visible: {
 			opacity: 1,
-			height: 'auto'
-			// height: 29
+			height: 'auto',
+			marginLeft: 7,
+			marginBottom: 10 
 		},
 		hidden: { opacity: 0, height: 0 }
 	};

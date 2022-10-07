@@ -9,10 +9,15 @@ import ProductForm from "./ProductForm";
 import { motion } from 'framer-motion';
 
 // eslint-disable-next-line react/display-name
-export const Product = motion(forwardRef(({ product }: { product: ProductModel }, ref:ForwardedRef<HTMLDivElement>) => {
+export const Product = motion(forwardRef(({ product }: { product: ProductModel }, ref: ForwardedRef<HTMLDivElement>) => {
 
     const [isOpened, setIsOpened] = useState(false);
-    const reviewRef = useRef<HTMLDivElement>(null);
+    const reviewRef = useRef<HTMLSpanElement>(null);
+
+    const variants = {
+        visible: { opacity: 1, height: 'auto' },
+        hidden: { opacity: 0, height: 0 }
+    };
 
     const scrollToReview = () => {
         if (!product.reviews.length) return;
@@ -107,10 +112,15 @@ export const Product = motion(forwardRef(({ product }: { product: ProductModel }
             </div>
 
             {!!product.reviews.length && <span ref={reviewRef}></span>}
-            {isOpened && <>
+            <motion.div
+                style={{ overflow: 'hidden' }}
+                animate={isOpened ? 'visible' : 'hidden'}
+                variants={variants}
+                initial='hidden'
+            >
                 {product.reviews.map(el => <ProductReview key={el._id} review={el} />)}
                 <ProductForm productId={product._id} />
-            </>}
+            </motion.div>
         </div>
     );
 }));

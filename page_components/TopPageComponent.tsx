@@ -24,7 +24,7 @@ export const TopPageComponent = ({ page, products, firstCategory }: TopPageCompo
         dispatch(addProducts(products));
     }, [dispatch, products]);
     
-    console.log(productsRTK);
+    // console.log(productsRTK);
 
     return (
         <div className="TopPageComponent">

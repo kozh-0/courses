@@ -15,6 +15,8 @@ export const ProductSlice = createSlice({
     initialState,
     reducers: {
         addProducts: (state, action: PayloadAction<ProductModel[]>) => {
+            console.log(action.payload);
+            
             state.list = action.payload.sort((a,b) => a.initialRating > b.initialRating ? -1 : 1);
             state.status = 'rating';
         },
