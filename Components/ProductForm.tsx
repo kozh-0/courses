@@ -4,6 +4,8 @@ import { Controller, useForm } from "react-hook-form";
 import { API } from "../helpers/api";
 import { Rating } from "./Rating";
 import { motion } from 'framer-motion';
+import { useAppDispatch } from "../store";
+import { addReview } from "../Redux/ProductSlice";
 
 interface IProductForm {
     name: string;
@@ -13,10 +15,12 @@ interface IProductForm {
 }
 
 export default function ProductForm({ productId }: { productId: string }) {
-
+    // console.log(productId);
+    
     const { register, control, handleSubmit, formState: { errors }, reset } = useForm<IProductForm>();
     const [isSuccess, setIsSuccess] = useState(false);
     const [error, setError] = useState<string>();
+    const dispatch = useAppDispatch();
 
     const variants = {
         visible: { opacity: 1, height: 'auto' },
@@ -25,6 +29,15 @@ export default function ProductForm({ productId }: { productId: string }) {
 
     const onSubmit = async (formData: IProductForm) => {
         try {
+            dispatch(addReview({
+                productId,
+                review: {
+                    ...formData,
+                    _id: `${new Date}`,
+                    createdAt: new Date().toISOString()
+                }
+            }));
+            
             const { data } = await axios.post<{ message: string }>(API.review.createDemo, { ...formData, productId });
             if (data.message) {
                 setIsSuccess(true);

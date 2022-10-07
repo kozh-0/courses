@@ -34,7 +34,10 @@ export const Header = () => {
 		<header>
 			<div className='header_top'>
 				<Link href='http://localhost:3000/'>
-					<Logo />
+					<div>
+						<Logo />
+
+					</div>
 				</Link>
 				<div  onClick={() => setIsOpened(true)}>
 					<ButtonIcon color='white' icon='burger'/>
