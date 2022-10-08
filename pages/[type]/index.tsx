@@ -32,9 +32,9 @@ export default function Type(props: HomeProps) {
                 src="/nothing.gif"
                 alt="gif"
             />
+            <h2 style={{maxWidth: '500px', marginTop: '10px'}}>Но вы можете поискать курсы в соответствующей вкладке</h2>
         </div>
     </Layout>;
-
 }
 
 

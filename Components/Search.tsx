@@ -9,6 +9,7 @@ export default function Search() {
 
     // перейти на путь /search и добавить query парраметры из инпута
     const goToSearch = () => {
+        if (!search) return;
         router.push({
             pathname: '/search',
             query: {
