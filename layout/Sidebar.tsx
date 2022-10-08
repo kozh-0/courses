@@ -5,18 +5,17 @@ import { useRouter } from "next/router";
 import { FirstLevelMenuItem, PageItem } from "../interfaces/menuInterface";
 import { FirstLevelMenu } from "../helpers/helpers";
 import Logo from './logo.svg';
-// import { DetailedHTMLProps, HTMLAttributes } from "react";
 import Search from "../Components/Search";
 import { motion } from 'framer-motion';
 
-// interface SidebarProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> { }
 
-export const Sidebar = (/* { ...props }: SidebarProps */) => {
+export const Sidebar = () => {
 	const menu = useAppSelector((state: RootState) => state.menu.inner.list);
 	const firstCategory = useAppSelector((state: RootState) => state.menu.inner.firstCategory);
 	const dispatch = useAppDispatch();
 	const router = useRouter();
-
+	// console.log(router);
+	
 	const variants = {
 		visible: {
 			transition: {
@@ -46,43 +45,47 @@ export const Sidebar = (/* { ...props }: SidebarProps */) => {
 		}
 	};
 	const buildSecondLevel = (menuItem: FirstLevelMenuItem) => (
-		<nav className="sidebar_second"/*  {...props} */>
+		<ul className="sidebar_second">
 			{menu.map((m, idx) => (
-				<div 
+				<li 
 					tabIndex={0} 
 					onKeyDown={(key) => openSecondLevelByKey(key, idx)}
 					key={m._id.secondCategory} 
 					style={{ overflow: 'hidden' }}
 				>
-					<div className="sidebar_second_title"
-						onClick={() => dispatch(changeOpenState(idx))}>
+					<button 
+						className="sidebar_second_title"
+						onClick={() => dispatch(changeOpenState(idx))}
+						aria-expanded={m.isOpened}
+					>
 						{m._id.secondCategory}
-					</div>
-					<motion.div
+					</button>
+					<motion.ul
 						layout
 						variants={variants}
 						initial={m.isOpened ? 'visible' : 'hidden'}
 						animate={m.isOpened ? 'visible' : 'hidden'}
 					>
 						{buildThirdLevel(m.pages, menuItem.route, m.isOpened ?? false)}
-					</motion.div>
-				</div>
+					</motion.ul>
+				</li>
 			))}
-		</nav>
+		</ul>
 	);
 
 	const buildThirdLevel = (pages: PageItem[], route: string, isOpened: boolean) => <>
 		{pages.map(p => (
-			<motion.nav key={p._id} variants={variantsChildren}>
+			<motion.li key={p._id} variants={variantsChildren}>
 				<Link href={`/${route}/${p.alias}`}>
 					<a
+						onKeyDown={key => {if(key.code === 'Enter') router.push(`/${route}/${p.alias}`);}}
 						tabIndex={isOpened ? 0 : -1}
 						className={`/${route}/${p.alias}` == router.asPath ? "sidebar_third onPath" : "sidebar_third"}
 					>
 						{p.category}
 					</a>
 				</Link>
-			</motion.nav>
+			</motion.li>
 		))}
 	</>;
 

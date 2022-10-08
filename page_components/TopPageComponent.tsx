@@ -35,7 +35,7 @@ export const TopPageComponent = ({ page, products, firstCategory }: TopPageCompo
                 </div>
                 {products.length > 1 && <Sort />}
             </div>
-            <div className="TopPageComponent_products">
+            <div className="TopPageComponent_products" role='list'>
                 {productsRTK && productsRTK.map(el => <Product layout key={el._id} product={el} />)}     
             </div>
 

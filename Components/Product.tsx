@@ -29,7 +29,7 @@ export const Product = motion(forwardRef(({ product }: { product: ProductModel }
     };
 
     return (
-        <div className="TopPageComponent_products_item" ref={ref}>
+        <div className="TopPageComponent_products_item" ref={ref} role='listitem'>
             <div className="TopPageComponent_products_item_head">
 
                 <div className="TopPageComponent_products_item_head_title">
