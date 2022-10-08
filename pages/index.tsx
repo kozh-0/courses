@@ -1,45 +1,44 @@
 import axios from "axios";
 import { GetStaticProps } from "next";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAppDispatch } from "../store";
-// дает правильную типизацию и подсказки на основе созданного стора
-
-import Arrow from '../Components/imgs/arrow.svg';
-import { Rating } from "../Components/Rating";
 import { MenuItem } from "../interfaces/menuInterface";
 import { addMenu } from "../Redux/MenuSlice";
 import { withLayout } from "../layout/Layout";
 import { API } from "../helpers/api";
 
 
+export const skills = ['HTML', 'SCSS', 'TypeScript', 'Next.js', 'RTK', 'Routing (SPA)', 'SSR', 'npm', 'REST API', 'Git', 'GitHub', 'Insomnia', 'Figma'];
 
-function Home(props: HomeProps/* { menu }: HomeProps */) {
+function Home(props: HomeProps) {
 
 	const dispatch = useAppDispatch();
-	const [counter, setCounter] = useState(0);
 
 	useEffect(() => {
 		dispatch(addMenu(props));
 	}, [dispatch, props]);
 
-	return <>
-		<h1>{counter}</h1>
-		<button className="btn_primary" onClick={() => setCounter(prev => prev + 1)}>increment</button>
-		<button className="btn" onClick={() => setCounter(prev => prev - 1)}>decrement</button>
-		<button className="btn_ghost">
-			btn_ghost &nbsp;<Arrow />
-		</button>
+	return <div className="MAIN_PAGE">
+		<h1>Всем привет!</h1>
+		<p style={{marginBottom: '15px'}}>Меня зовут Дмитрий</p>
+		<p className="p_medium">Более года я занимаюсь фронтенд разработкой и ниже приведены технологии, на которых написан этот проект:</p>
 
-		<Rating score={0} isEditable={true} />
+		<div className="MAIN_PAGE_skills">
+			{skills.map((el, i) => <div key={i} className='tag_medium primary'>{el}</div>)}
+		</div>
 
-		<p className='p_small'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s.</p>
+		<div className="MAIN_PAGE_CV">
+			<p>Подробнее обо мне можно узнать из резюме:</p>
+			<a className="btn_primary" target='_blank' rel='noreferrer' href="https://drive.google.com/file/d/1sud3v0-G_IiiqS9v0Mv40rs9J2rOoD7q/view?usp=sharing">
+				Eng CV
+			</a>
+			<a className="btn_primary" target='_blank' rel='noreferrer' href="https://drive.google.com/file/d/1-Ki74DNTd_-I8HhUuLiwWpfg5FpZtdK_/view?usp=sharing">
+				Резюме
+			</a>
+		</div>
 
-		<div className='tag_small ghost'>hh.ru</div>
-		<div className='tag_medium red'>hh.ru</div>
-		<div className='tag_small grey'>hh.ru</div>
-		<div className='tag_medium green'>hh.ru</div>
-		<div className='tag_small primary'>hh.ru</div>
-	</>;
+		<p className='p_medium'>Чтобы начать пользоваться приложением, переходите к меню...</p>
+	</div>;
 }
 export default withLayout(Home);
 

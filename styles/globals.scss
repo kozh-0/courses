@@ -110,19 +110,19 @@ div button:hover {
   transform: scale(1.1) !important;
 
 }
-button.btn { 
+.btn { 
   @extend %base_btn; 
   &:hover { background: #cccccc;}
 }
 
-button.btn_primary {
+.btn_primary {
   @extend %base_btn;
   color: $white;
   background-color: $primary;
   &:hover { background-color: $primary_hover }
 }
 
-button.btn_ghost {
+.btn_ghost {
   @extend %base_btn;
   color: $black;
   background: none;
@@ -228,6 +228,32 @@ div.primary {
   background: none;
   border: 1px solid $primary;
 }
+
+
+// Header ====================================================================================
+.MAIN_PAGE {
+  max-width: 520px;
+  // margin: 0 auto;
+  p.p_medium { 
+    margin-bottom: 10px;
+    &:last-child { margin-top: 30px;}
+  }
+
+  &_skills {
+    margin: 0 0 10px;
+    div {
+      margin-bottom: 5px; 
+      color:#333;
+      pointer-events: none;
+    }
+  }
+  &_CV {
+    p {margin-bottom: 5px;}
+    a {margin-right: 10px; width: 150px;}
+  }
+}
+
+
 
 
 
@@ -361,6 +387,9 @@ main {
 // TopPageComponent ====================================================================================
 .sort {
   button { 
+    box-shadow: 2px 2px 0px rgb(0 0 0 / 15%);
+    border-top: 1px solid rgb(170, 170, 170);
+    border-left: 1px solid rgb(170, 170, 170);
     display: flex;
     align-items: center;
     justify-content: center;
