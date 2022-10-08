@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ProductModel, ReviewModel } from '../interfaces/productInterface';
 
-
 const initialState = { 
     list: [],
     status: 'rating'
@@ -29,8 +28,6 @@ export const ProductSlice = createSlice({
         addReview: (state, action: PayloadAction<IaddReview>) => {
             state.list.find(el => el._id === action.payload.productId)?.reviews.push(action.payload.review);
         },
-
-
     },
 });
 
@@ -42,6 +39,5 @@ export default ProductSlice.reducer;
 
 interface IaddReview {
     productId: string;
-    review: ReviewModel
-    
+    review: ReviewModel;
 }

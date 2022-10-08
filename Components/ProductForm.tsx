@@ -16,8 +16,8 @@ interface IProductForm {
 
 export default function ProductForm({ productId }: { productId: string }) {
     // console.log(productId);
-    
-    const { register, control, handleSubmit, formState: { errors }, reset } = useForm<IProductForm>();
+
+    const { register, control, handleSubmit, formState: { errors }, reset, clearErrors } = useForm<IProductForm>();
     const [isSuccess, setIsSuccess] = useState(false);
     const [error, setError] = useState<string>();
     const dispatch = useAppDispatch();
@@ -37,7 +37,7 @@ export default function ProductForm({ productId }: { productId: string }) {
                     createdAt: new Date().toISOString()
                 }
             }));
-            
+
             const { data } = await axios.post<{ message: string }>(API.review.createDemo, { ...formData, productId });
             if (data.message) {
                 setIsSuccess(true);
@@ -51,7 +51,7 @@ export default function ProductForm({ productId }: { productId: string }) {
             }
         }
     };
-    
+
     return (
         // Функция которая вызовется после сабмита
         <form className="review_form" onSubmit={handleSubmit(onSubmit)}>
@@ -62,6 +62,7 @@ export default function ProductForm({ productId }: { productId: string }) {
                             {...register('name', { required: { value: true, message: 'Заполните имя' } })}
                             placeholder="Имя"
                             style={errors.name ? { border: '1px solid #FC836D' } : {}}
+                            aria-invalid={errors.name ? true : false}
                         />
                         {errors.name && <span>{errors.name.message}</span>}
                     </section>
@@ -70,6 +71,7 @@ export default function ProductForm({ productId }: { productId: string }) {
                             {...register('title', { required: { value: true, message: 'Заполните заголовок' } })}
                             placeholder="Заголовок отзыва"
                             style={errors.title ? { border: '1px solid #FC836D' } : {}}
+                            aria-invalid={errors.title ? true : false}
                         />
                         {errors.title && <span>{errors.title.message}</span>}
                     </section>
@@ -98,12 +100,14 @@ export default function ProductForm({ productId }: { productId: string }) {
                     {...register('description', { required: { value: true, message: 'Заполните описание' } })}
                     placeholder="Текст отзыва"
                     style={errors.description ? { border: '1px solid #FC836D' } : {}}
+                    aria-label="Текст отзыва"
+                    aria-invalid={errors.description ? true : false}
                 />
                 {errors.description && <span>{errors.description.message}</span>}
             </div>
 
             <div className="review_form_send">
-                <button className="btn_primary">Отправить</button>
+                <button className="btn_primary" onClick={() => clearErrors()}>Отправить</button>
                 {/* <span>* Перед публикацией отзыв пройдет предварительную модерацию и проверку</span> */}
             </div>
 
@@ -113,22 +117,26 @@ export default function ProductForm({ productId }: { productId: string }) {
                 variants={variants}
                 initial='hidden'
             >
-                {isSuccess && <div className="review_form_success green">
+                {isSuccess && <div className="review_form_success green" role='alert'>
                     <div>Спасибо !</div>
                     <div style={{ fontWeight: '500', marginTop: '5px' }}>
                         Ваш отзыв отправлен
                     </div>
-                    <span onClick={() => setIsSuccess(false)}>&#10006;</span>
+                    <button 
+                        onClick={() => setIsSuccess(false)}
+                        aria-label='Закрыть оповещение'
+                    >&#10006;</button>
                 </div>}
-                {error && <div className="review_form_success" style={{ background: '#FDB7B7' }}>
-                    <div>Что-то пошло не так</div>
-                    <div style={{ fontWeight: '500', marginTop: '5px' }}>
+                {error && <div className="review_form_success" style={{ background: '#FDB7B7'}} role='alert'>
+                    <div style={{ fontWeight: '500'}}>Что-то пошло не так...</div>
+                    <div style={{ marginTop: '5px' }}>
                         Попробуйте обновить страницу
                     </div>
-                    <span
+                    <button
                         onClick={() => setError(undefined)}
                         style={{ color: 'black' }}
-                    >&#10006;</span>
+                        aria-label='Закрыть оповещение'
+                    >&#10006;</button>
                 </div>}
             </motion.div>
         </form>

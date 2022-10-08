@@ -356,9 +356,13 @@ main {
 
 // TopPageComponent ====================================================================================
 .sort {
-  div { 
+  button { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer; 
-    &:hover { border-bottom: 2px solid $primary }
+    width: 125px;
+    // &:hover { border-bottom: 2px solid $primary }
     &:first-child { margin-right: 20px }
   }
   svg { margin-right: 5px }
@@ -685,7 +689,9 @@ div.TopPageComponent {
       position: relative;
       border-radius: 20px;
       color: $black !important;
-      span {
+      button {
+        background: none;
+        border: none;
         cursor: pointer;
         padding: 3px;
         color: green;
@@ -807,12 +813,8 @@ footer {
   }
   .splitter { height: 1px; width: 80%; }
   .TopPageComponent_title {
-    flex-wrap: wrap;
-    &_top {
-      width: 100%;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
+    flex-direction: column;
+    &_top { margin-bottom: 10px }
   }
 }
 

@@ -9,18 +9,18 @@ export default function Sort() {
 
     return (
         <div className='sort'>
-            <div onClick={() => dispatch(sortProductsByRating())}>
+            <button className='btn' onClick={() => dispatch(sortProductsByRating())}>
                 {status === 'rating' ? <>
                     <SortIcon />
                     <p style={{ color: '#7351f5' }}>По рейтингу</p>
                 </> : <p style={{ color: 'black' }}>По рейтингу</p>}
-            </div>
-            <div onClick={() => dispatch(sortProductsByPrice())}>
+            </button>
+            <button className='btn' onClick={() => dispatch(sortProductsByPrice())}>
                 {status === 'price' ? <>
                     <SortIcon />
                     <p style={{ color: '#7351f5' }}>По цене</p>
                 </> : <p style={{ color: 'black' }}>По цене</p>}
-            </div>
+            </button>
         </div>
     );
 }

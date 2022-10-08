@@ -31,7 +31,7 @@ export const TopPageComponent = ({ page, products, firstCategory }: TopPageCompo
             <div className="TopPageComponent_title">
                 <div className="TopPageComponent_title_top">
                     <h1>{page.title}</h1>
-                    <div className="tag_medium grey">{products.length}</div>
+                    <div className="tag_medium grey" aria-label={products.length + 'элементов'}>{products.length}</div>
                 </div>
                 {products.length > 1 && <Sort />}
             </div>

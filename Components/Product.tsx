@@ -108,6 +108,7 @@ export const Product = motion(forwardRef(({ product }: { product: ProductModel }
                 <button
                     className="btn_ghost"
                     onClick={() => setIsOpened(!isOpened)}
+                    aria-expanded={isOpened}
                 >{product.reviews.length ? 'Читать отзывы' : 'Оставить комментарий'} &nbsp; <Arrow /></button>
             </div>
 

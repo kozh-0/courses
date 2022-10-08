@@ -23,6 +23,12 @@ export const Rating = ({ score = 0, isEditable = false, setScore, error }: IRati
 					onMouseLeave={() => isEditable && construncRating(stars)}
 					onClick={() => clickHandler(i) }
 					className={(i < currentRating) ? 'filled' : ''}
+					role={isEditable ? 'slider' : ''}
+					aria-invalid={error ? true : false}
+					aria-label={isEditable ? 'Укажите рейтинг' : ('Текущий рейтинг' + stars)}
+					aria-valuenow={stars}
+					aria-valuemax={5}
+					aria-valuemin={0}
 				/>
 			</span>
 		);
@@ -40,7 +46,7 @@ export const Rating = ({ score = 0, isEditable = false, setScore, error }: IRati
 		if (stars === 0) setStars(Math.round(score));
 
 		return () => {
-			if (score && setScore) setStars(0);
+			if (stars && score && setScore) setStars(0);
 		};
 		//eslint-disable-next-line
 	}, [stars, score]);

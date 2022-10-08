@@ -5,13 +5,13 @@ import { useRouter } from "next/router";
 import { FirstLevelMenuItem, PageItem } from "../interfaces/menuInterface";
 import { FirstLevelMenu } from "../helpers/helpers";
 import Logo from './logo.svg';
-import { DetailedHTMLProps, HTMLAttributes } from "react";
+// import { DetailedHTMLProps, HTMLAttributes } from "react";
 import Search from "../Components/Search";
 import { motion } from 'framer-motion';
 
-interface SidebarProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> { }
+// interface SidebarProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> { }
 
-export const Sidebar = ({ ...props }: SidebarProps) => {
+export const Sidebar = (/* { ...props }: SidebarProps */) => {
 	const menu = useAppSelector((state: RootState) => state.menu.inner.list);
 	const firstCategory = useAppSelector((state: RootState) => state.menu.inner.firstCategory);
 	const dispatch = useAppDispatch();
@@ -38,7 +38,7 @@ export const Sidebar = ({ ...props }: SidebarProps) => {
 		hidden: { opacity: 0, height: 0 }
 	};
 
-
+	// eslint-disable-next-line
 	const openSecondLevelByKey = (key: any, idx: number) => {
 		if (key.code === 'Space' || key.code === 'Enter') {
 			key.preventDefault();
@@ -46,7 +46,7 @@ export const Sidebar = ({ ...props }: SidebarProps) => {
 		}
 	};
 	const buildSecondLevel = (menuItem: FirstLevelMenuItem) => (
-		<div className="sidebar_second" {...props}>
+		<nav className="sidebar_second"/*  {...props} */>
 			{menu.map((m, idx) => (
 				<div 
 					tabIndex={0} 
@@ -68,12 +68,12 @@ export const Sidebar = ({ ...props }: SidebarProps) => {
 					</motion.div>
 				</div>
 			))}
-		</div>
+		</nav>
 	);
 
 	const buildThirdLevel = (pages: PageItem[], route: string, isOpened: boolean) => <>
 		{pages.map(p => (
-			<motion.div key={p._id} variants={variantsChildren}>
+			<motion.nav key={p._id} variants={variantsChildren}>
 				<Link href={`/${route}/${p.alias}`}>
 					<a
 						tabIndex={isOpened ? 0 : -1}
@@ -82,13 +82,13 @@ export const Sidebar = ({ ...props }: SidebarProps) => {
 						{p.category}
 					</a>
 				</Link>
-			</motion.div>
+			</motion.nav>
 		))}
 	</>;
 
 	const buildFirstLevel = () => <>
 		{FirstLevelMenu.map(m => (
-			<div key={m.route} className="sidebar_main">
+			<nav key={m.route} className="sidebar_main">
 				<Link href={`/${m.route}`}>
 					<div className="sidebar_main_title">
 						{m.icon}
@@ -97,12 +97,12 @@ export const Sidebar = ({ ...props }: SidebarProps) => {
 				</Link>
 
 				{m.id === firstCategory && buildSecondLevel(m)}
-			</div>
+			</nav>
 		))}
 	</>;
 
 	return (
-		<section className="sidebar">
+		<section className="sidebar" role='navigation'>
 			<Link href="http://localhost:3000/">
 				<div className="sidebar_logo">
 					<Logo />

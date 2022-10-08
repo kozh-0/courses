@@ -12,7 +12,7 @@ export const Layout = ({ children }: LayoutProps) => <>
     <Header />
     <div className="main_wrapper container">
         <Sidebar />
-        <main>
+        <main role='main'>
             {children}
         </main>
     </div>

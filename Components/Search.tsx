@@ -19,7 +19,7 @@ export default function Search() {
     };
 
     return (
-        <div className='search'>
+        <div className='search' role='search'>
             <input 
                 placeholder="Поиск..."
                 value={search}
@@ -29,6 +29,7 @@ export default function Search() {
             <button 
                 className='btn_primary'
                 onClick={goToSearch}
+                aria-label='Искать по сайту'
             >
                 <SearchSVG/>
             </button>
