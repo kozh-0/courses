@@ -24,15 +24,16 @@ export const Sidebar = ({ ...props }: SidebarProps) => {
 				straggerChildren: 0.1
 			},
 			marginBottom: 20,
+			height: 'auto'
 		},
-		hidden: { marginBottom: 0 }
+		hidden: { marginBottom: 0, height: 0 }
 	};
 	const variantsChildren = {
 		visible: {
 			opacity: 1,
 			height: 'auto',
 			marginLeft: 7,
-			marginBottom: 10
+			marginBottom: 10,
 		},
 		hidden: { opacity: 0, height: 0 }
 	};

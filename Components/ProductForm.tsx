@@ -51,7 +51,7 @@ export default function ProductForm({ productId }: { productId: string }) {
             }
         }
     };
-
+    
     return (
         // Функция которая вызовется после сабмита
         <form className="review_form" onSubmit={handleSubmit(onSubmit)}>
@@ -104,7 +104,7 @@ export default function ProductForm({ productId }: { productId: string }) {
 
             <div className="review_form_send">
                 <button className="btn_primary">Отправить</button>
-                <span>* Перед публикацией отзыв пройдет предварительную модерацию и проверку</span>
+                {/* <span>* Перед публикацией отзыв пройдет предварительную модерацию и проверку</span> */}
             </div>
 
             <motion.div
@@ -114,9 +114,9 @@ export default function ProductForm({ productId }: { productId: string }) {
                 initial='hidden'
             >
                 {isSuccess && <div className="review_form_success green">
-                    <div>Ваш отзыв отправлен</div>
+                    <div>Спасибо !</div>
                     <div style={{ fontWeight: '500', marginTop: '5px' }}>
-                        Спасибо, ваш отзыв будет опубликован после проверки.
+                        Ваш отзыв отправлен
                     </div>
                     <span onClick={() => setIsSuccess(false)}>&#10006;</span>
                 </div>}

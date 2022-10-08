@@ -37,11 +37,13 @@ export const Rating = ({ score = 0, isEditable = false, setScore, error }: IRati
 
 	useEffect(() => {
 		construncRating(stars);
-		if (stars === 0) {
-			setStars(Math.round(score));
-		}
+		if (stars === 0) setStars(Math.round(score));
+
+		return () => {
+			if (score && setScore) setStars(0);
+		};
 		//eslint-disable-next-line
-	}, [stars]);
+	}, [stars, score]);
 
 	return (
 		<section style={ !error ? { display: 'flex' } : {display: 'flex', stroke: '#FC836D'}}>
