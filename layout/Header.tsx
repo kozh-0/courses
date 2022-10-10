@@ -33,7 +33,7 @@ export const Header = () => {
 	return (
 		<header>
 			<div className='header_top'>
-				<Link href='http://localhost:3000/'>
+				<Link href='https://courses-teal.vercel.app/'>
 					<div>
 						<Logo />
 
