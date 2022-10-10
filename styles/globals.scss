@@ -62,7 +62,7 @@ textarea {
   display: flex;
   margin: 20px 0 30px;
   position: relative;
-  width: 100%;
+  max-width: 300px;
   input {width: 100%;}
   button {
     transform: scale(0.8);
@@ -363,6 +363,7 @@ main {
       font-weight: 300;
       font-size: 12px;
       transition: all 0.1s ease;
+      text-align: left;
       // line-height: 16px;
     }
   }
@@ -821,6 +822,8 @@ footer {
 }
 
 @media (max-width: 900px) {
+  .sidebar { display: none; margin-left: 15px; height: 100vh;}
+  header {display: block;}
   .review_item_top {
     flex-wrap: wrap;
     &_title {
@@ -830,8 +833,6 @@ footer {
 }
 
 @media (max-width: 765px) {
-  .sidebar { display: none }
-  header {display: block;}
   main { min-height: calc(100vh - 19px - 72px) }
   .review_form_top_title { 
     width: 100%; 
