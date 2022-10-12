@@ -107,7 +107,16 @@ export default function ProductForm({ productId }: { productId: string }) {
             </div>
 
             <div className="review_form_send">
-                <button className="btn_primary" onClick={() => clearErrors()}>Отправить</button>
+                <button 
+                className="btn_primary" 
+                onClick={() => {
+                    clearErrors();
+                    setTimeout(() => {
+                        setError(undefined);
+                        setIsSuccess(false);
+                    }, 5000);
+                }}
+                >Отправить</button>
                 {/* <span>* Перед публикацией отзыв пройдет предварительную модерацию и проверку</span> */}
             </div>
 
