@@ -33,17 +33,16 @@ export const Header = () => {
 	return (
 		<header>
 			<div className='header_top'>
-				<Link href='https://courses-teal.vercel.app/'>
-					<div>
+				<Link href='/'>
+					<div style={{ cursor: 'pointer' }}>
 						<Logo />
-
 					</div>
 				</Link>
-				<div  onClick={() => setIsOpened(true)}>
-					<ButtonIcon color='white' icon='burger'/>
+				<div onClick={() => setIsOpened(true)}>
+					<ButtonIcon color='white' icon='burger' />
 				</div>
 			</div>
-			<motion.div 
+			<motion.div
 				className='mobileMenu'
 				variants={variants}
 				initial='closed'
@@ -51,7 +50,7 @@ export const Header = () => {
 			>
 				<Sidebar />
 				<div onClick={() => setIsOpened(false)}>
-					<ButtonIcon color='white' icon='close'/>
+					<ButtonIcon color='white' icon='close' />
 				</div>
 			</motion.div>
 		</header>

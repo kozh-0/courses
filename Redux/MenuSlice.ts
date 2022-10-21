@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Menu/* , MenuItem */ } from '../interfaces/menuInterface';
+import { Menu,/* , MenuItem */ PageItem} from '../interfaces/menuInterface';
 
 
-const initialState = { inner: {} } as { inner: Menu };
+const initialState = { inner: {}, autocomplete: [{}] } as { inner: Menu, autocomplete: PageItem[] };
 // const initialState = [] as MenuItem[];
 
 export const menuSlice = createSlice({
@@ -11,6 +11,7 @@ export const menuSlice = createSlice({
     reducers: {
         addMenu: (state, action: PayloadAction<Menu>) => {
             state.inner = action.payload;
+            state.autocomplete = action.payload.list.flatMap(el => el.pages);
             // state.inner.list.map(el => el.isOpened = false); 
         },
         changeOpenState: (state, {payload}: PayloadAction<number>) => {

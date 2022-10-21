@@ -15,8 +15,7 @@ export default function Type(props: HomeProps) {
 
     const menuRedux = useAppSelector((state: RootState) => state.menu.inner.list);
     const dispatch = useAppDispatch();
-    console.log(menuRedux);
-    
+
     useEffect(() => {
         if (!menuRedux) {
             dispatch(addMenu(props));
@@ -25,14 +24,14 @@ export default function Type(props: HomeProps) {
 
     return <Layout>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', textAlign: 'center' }}>
-            <h1 style={{marginBottom: '10px'}}>Тут пока ничего нет ¯\_(ツ)_/¯</h1>
+            <h1 style={{ marginBottom: '10px' }}>Тут пока ничего нет ¯\_(ツ)_/¯</h1>
             <Image
                 width={280}
                 height={150}
                 src="/nothing.gif"
                 alt="gif"
             />
-            <h2 style={{maxWidth: '500px', marginTop: '10px'}}>Но вы можете поискать курсы в соответствующей вкладке</h2>
+            <h2 style={{ maxWidth: '500px', marginTop: '10px' }}>Но вы можете поискать курсы в соответствующей вкладке</h2>
         </div>
     </Layout>;
 }

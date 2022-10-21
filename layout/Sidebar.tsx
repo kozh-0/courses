@@ -106,7 +106,7 @@ export const Sidebar = () => {
 
 	return (
 		<section className="sidebar" role='navigation'>
-			<Link href="https://courses-teal.vercel.app/">
+			<Link href="/">
 				<div className="sidebar_logo">
 					<Logo />
 				</div>
