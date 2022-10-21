@@ -101,6 +101,7 @@ textarea {
     width: 100%;
     padding-left: 0;
     border: 1px solid #dadada;
+    z-index: 2;
     max-height: 150px;
     overflow-y: scroll;
     &_item {

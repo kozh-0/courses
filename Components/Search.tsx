@@ -53,6 +53,7 @@ export default function Search() {
                         <li
                             key={el._id}
                             className='search_autocomplete_item'
+                            onClick={() => setSearch(el.category)}
                         >
                             <Link href={`/courses/${el.alias}`} tabIndex={0}>
                                 {el.category}
