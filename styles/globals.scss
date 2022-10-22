@@ -79,9 +79,15 @@ textarea {
     max-width: 250px;
     input {width: 100%;}
     span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 12px;
+      height: 12px;
       position: absolute;
-      left: 75%;
+      left: 77%;
       font-size: 12px;
+      color: $gray-dark;
       cursor: default;
     }
     button {
@@ -89,9 +95,7 @@ textarea {
       position: absolute;
       right: 0;
       bottom: -1.5px;
-      svg {
-        transform: scale(1.2);
-      }
+      svg { transform: scale(1.2); }
     }
   }
 
@@ -153,8 +157,8 @@ h3 {
 div button:hover { 
   transition: all 0.2s ease;
   transform: scale(1.1) !important;
-
 }
+
 .btn { 
   @extend %base_btn; 
   &:hover { background: #cccccc;}
@@ -277,11 +281,11 @@ div.primary {
 
 // Header ====================================================================================
 .MAIN_PAGE {
-  max-width: 520px;
-  // margin: 0 auto;
+  max-width: 700px;
+  margin: 0 auto;
   p.p_medium { 
     margin-bottom: 10px;
-    &:last-child { margin-top: 30px;}
+    &:last-child { margin-top: 30px; text-align: right;}
   }
 
   &_skills {
@@ -354,7 +358,8 @@ svg.filled { fill: $primary }
 }
 
 main { 
-  min-height: calc(100vh - 91px);
+  // min-height: calc(100vh - 91px);
+  min-height: calc(100vh - 145px);
   width: 100%; 
 }
 .container {
@@ -364,7 +369,7 @@ main {
 }
 
 .sidebar {
-  width: 20%;
+  // width: 20%;
   margin-right: 4%;
   // max-width: 250px;
   // padding-right: 4%;
@@ -797,21 +802,18 @@ footer {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 20px 0 ;
+  padding: 12px 0 ;
   text-align: center;
 
   a {
     display: flex;
     align-items: center;
     span {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 500;
-      margin-right: 10px;
+      margin-right: 8px;
     }
-    svg { 
-      height: 40px; 
-      width:40px;
-    }
+    svg { height: 32px; width: 32px }
     transition: all 0.2s ease;
     &:hover {
       color: $gray-light;
@@ -823,9 +825,7 @@ footer {
     display: flex;
     align-items: center;
     flex-direction: column;
-    p {margin: 5px 10px; font-size: 20px;}
-    span {font-size: 20px;}
-    
+    p {margin: 5px 10px; font-size: 16px;}
   }
 }
 
@@ -867,8 +867,10 @@ footer {
 }
 
 @media (max-width: 900px) {
-  .sidebar { display: none; margin-left: 15px; height: 100vh;}
+  .sidebar { display: none; margin-left: 28%; height: 100vh;}
   .search_input span { left: 80%;}
+  .search_autocomplete { max-width: 250px;}
+
   header {display: block;}
   .review_item_top {
     flex-wrap: wrap;
@@ -900,10 +902,12 @@ footer {
 
 @media (max-width: 590px) {
   main { min-height: calc(100vh - 19px - 100px) }
-
+  .sidebar {margin-left: 24%;}
 }
 
 @media (max-width: 539px) {
+  .sidebar {margin-left: 18%;}
+
   .container {padding: 12px;}
   .TopPageComponent_products_item_head {
     flex-direction: column;
@@ -943,6 +947,8 @@ footer {
 }
 
 @media (max-width: 440px) {
+  .sidebar {margin-left: 15px;}
+
   div.TopPageComponent_products_item {
     &_head {padding: 10px;}
     .p_medium {padding: 10px !important;}

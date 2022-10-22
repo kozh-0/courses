@@ -92,12 +92,12 @@ export const Sidebar = () => {
 	const buildFirstLevel = () => <>
 		{FirstLevelMenu.map(m => (
 			<nav key={m.route} className="sidebar_main">
-				<Link href={`/${m.route}`}>
+				{/* <Link href={`/${m.route}`}> */}
 					<div className="sidebar_main_title">
 						{m.icon}
 						<span>{m.name}</span>
 					</div>
-				</Link>
+				{/* </Link> */}
 
 				{m.id === firstCategory && buildSecondLevel(m)}
 			</nav>

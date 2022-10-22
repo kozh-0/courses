@@ -36,7 +36,11 @@ export default function Search() {
                 onChange={(e) => setSearch(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') goToSearch(); }}
             />
-            <span onClick={() => setSearch('')}>&#10006;</span>
+            <span 
+                onClick={() => setSearch('')} 
+                tabIndex={0}
+                onKeyDown={(e) => {if (e.key === 'Enter') setSearch('');}}
+            >&#10006;</span>
             <button
                 className='btn_primary'
                 onClick={goToSearch}

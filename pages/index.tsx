@@ -8,7 +8,7 @@ import { withLayout } from "../layout/Layout";
 import { API } from "../helpers/api";
 
 
-export const skills = ['HTML', 'SCSS', 'TypeScript', 'Next.js', 'RTK', 'Routing (SPA)', 'SSR', 'npm', 'REST API', 'Git', 'GitHub', 'Insomnia', 'Figma', 'Docker'];
+export const skills = ['SCSS', 'TypeScript', 'Next.js', 'RTK', 'Routing', 'SSR', 'npm', 'REST API', 'Git', 'GitHub', 'Insomnia', 'Figma', 'Docker'];
 
 function Home(props: HomeProps) {
 

@@ -10,8 +10,12 @@ export const menuSlice = createSlice({
     initialState,
     reducers: {
         addMenu: (state, action: PayloadAction<Menu>) => {
-            state.inner = action.payload;
-            state.autocomplete = action.payload.list.flatMap(el => el.pages);
+            try {
+                state.inner = action.payload;
+                state.autocomplete = action.payload.list.flatMap(el => el.pages);
+            } catch (err) {
+                // console.error(err);
+            }
             // state.inner.list.map(el => el.isOpened = false); 
         },
         changeOpenState: (state, {payload}: PayloadAction<number>) => {
