@@ -12,10 +12,10 @@ import { useEffect } from "react";
 
 export default function MyApp({ Component, pageProps, router }: AppProps) {
   useEffect(() => {
-    console.log(Router);
     Router.events.on("routeChangeComplete", (url: string) => {
       if (typeof window !== "undefined") {
-        console.log(222222222222222);
+        console.log(222222222222222, "работает");
+
         ym("hit", url);
       }
     });
